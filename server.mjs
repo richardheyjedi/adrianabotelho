@@ -1,6 +1,6 @@
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
-import { extname, resolve } from 'node:path';
+import { readFile, stat } from 'node:fs/promises';
+import { extname, resolve, sep } from 'node:path';
 
 const root = resolve(process.cwd());
 const types = {
@@ -13,12 +13,13 @@ const types = {
 createServer(async (req, res) => {
   try {
     const requestPath = new URL(req.url ?? '/', 'http://127.0.0.1').pathname;
-    const file = resolve(root, `.${requestPath === '/' ? '/index.html' : requestPath}`);
-    if (!file.startsWith(root)) {
+    let file = resolve(root, `.${requestPath === '/' ? '/index.html' : requestPath}`);
+    if (file !== root && !file.startsWith(`${root}${sep}`)) {
       res.writeHead(403);
       res.end('Forbidden');
       return;
     }
+    if ((await stat(file)).isDirectory()) file = resolve(file, 'index.html');
     const body = await readFile(file);
     res.writeHead(200, { 'content-type': types[extname(file)] ?? 'application/octet-stream' });
     res.end(body);
