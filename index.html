@@ -74,6 +74,19 @@ svg.links path.on{stroke:var(--plum);stroke-width:2.2}
 .card .p3 b{color:var(--coral)}
 .note{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
 .empty{color:var(--muted);font-size:13.5px}
+.gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);padding:24px}
+.gate-card{width:min(100%,380px);background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 16px 45px rgba(47,50,41,.12)}
+.gate-card h2{font-family:var(--display);font-style:italic;font-weight:600;font-size:28px;line-height:1.1;color:var(--title);margin:0 0 8px}
+.gate-card p{margin:0;color:var(--muted)}
+.gate-form{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.gate-form label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.gate-form input{font:inherit;font-size:18px;letter-spacing:.2em;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;outline:none}
+.gate-form input:focus{border-color:var(--plum);box-shadow:0 0 0 3px color-mix(in srgb, var(--plum) 20%, transparent)}
+.gate-form button{font:inherit;font-weight:700;color:var(--plum-ink);background:var(--plum);border:1.5px solid var(--plum);border-radius:10px;padding:11px 14px;cursor:pointer}
+.gate-form button:hover{filter:brightness(.95)}
+.gate-error{font-size:13px!important;color:var(--coral)!important}
+body:has(> .gate:not([hidden])){overflow:hidden}
+body > .gate:not([hidden]) ~ .wrap{visibility:hidden}
 @media (max-width: 980px){
   body{padding-block:22px 32px}
   header{align-items:flex-start;margin-bottom:18px}
@@ -103,6 +116,19 @@ svg.links path.on{stroke:var(--plum);stroke-width:2.2}
   .card .nm{font-size:16px}
 }
 </style>
+
+  <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate-card">
+      <h2 id="gate-title">Mapa da guarnição</h2>
+      <p>Digite a senha para acessar a árvore interativa.</p>
+      <form class="gate-form" id="gate-form">
+        <label for="gate-password">Senha</label>
+        <input id="gate-password" type="password" inputmode="numeric" autocomplete="off" required autofocus>
+        <button type="submit">Acessar mapa</button>
+        <p class="gate-error" id="gate-error" role="alert" hidden>Senha incorreta. Tente novamente.</p>
+      </form>
+    </div>
+  </div>
 
 <div class="wrap">
   <header>
@@ -233,6 +259,20 @@ document.getElementById('reset').addEventListener('click', () => { Object.keys(s
 window.addEventListener('resize', () => requestAnimationFrame(draw));
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
 render();
+const gateForm = document.getElementById('gate-form');
+const gatePassword = document.getElementById('gate-password');
+const gateError = document.getElementById('gate-error');
+gateForm.addEventListener('submit', event => {
+  event.preventDefault();
+  if (gatePassword.value === '2026') {
+    document.getElementById('gate').hidden = true;
+    gatePassword.value = '';
+  } else {
+    gateError.hidden = false;
+    gatePassword.select();
+  }
+});
+gatePassword.addEventListener('input', () => { gateError.hidden = true; });
 </script>
 
 </body></html>
