@@ -1,278 +1,116 @@
-<!doctype html><html lang="pt-BR"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Mapa da guarnição</title>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1115">
+  <meta name="description" content="Adriana Botelho — uma nova experiência está chegando.">
+  <title>Adriana Botelho — Em breve</title>
+  <style>
+    :root{
+      color-scheme:dark;
+      --bg:#0d1115;--panel:#151b21;--panel-2:#1b232b;--ink:#f4efe7;--muted:#a6aaa9;
+      --line:rgba(244,239,231,.14);--accent:#e5a07d;--accent-2:#f1c6a4;--sage:#a9b6a0;
+      --display:Georgia,"Times New Roman",serif;--body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{min-width:320px;background:var(--bg)}
+    body{min-height:100svh;margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.65;background:radial-gradient(circle at 8% 12%,rgba(229,160,125,.16),transparent 28rem),radial-gradient(circle at 92% 78%,rgba(169,182,160,.12),transparent 30rem)}
+    a{color:inherit}
+    .shell{position:relative;z-index:1;width:min(1180px,100%);min-height:100svh;margin:0 auto;padding:28px clamp(20px,5vw,72px) 24px;display:flex;flex-direction:column}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .wordmark{font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:800}
+    .wordmark span{color:var(--accent)}
+    .top-note{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    .hero{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(320px,.94fr);align-items:center;gap:clamp(42px,8vw,110px);flex:1;padding:clamp(68px,11vh,130px) 0 72px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;color:var(--accent-2);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800}
+    .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(229,160,125,.12)}
+    h1{max-width:700px;margin:0;font-family:var(--display);font-size:clamp(48px,7.2vw,92px);font-weight:400;line-height:.98;letter-spacing:-.055em;text-wrap:balance}
+    h1 em{color:var(--accent);font-style:italic}
+    .intro{max-width:540px;margin:28px 0 0;color:var(--muted);font-size:clamp(16px,1.7vw,19px);line-height:1.65}
+    .actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-top:34px}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:1px solid var(--accent);border-radius:999px;background:var(--accent);color:#241915;text-decoration:none;font-size:13px;font-weight:800;letter-spacing:.04em;transition:transform .2s,background .2s}
+    .button:hover{background:var(--accent-2);transform:translateY(-2px)}
+    .quiet-link{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:4px}
+    .quiet-link:hover{color:var(--ink);border-color:var(--ink)}
+    .visual{position:relative;min-height:440px;display:grid;place-items:center}
+    .visual::before,.visual::after{content:"";position:absolute;border:1px solid var(--line);border-radius:50%;transform:rotate(-18deg)}
+    .visual::before{width:min(34vw,390px);height:min(34vw,390px);border-color:rgba(229,160,125,.3)}
+    .visual::after{width:min(27vw,300px);height:min(43vw,470px);border-color:rgba(169,182,160,.22)}
+    .orb{position:relative;width:min(72vw,360px);aspect-ratio:1;border-radius:50%;padding:18px;background:linear-gradient(145deg,rgba(229,160,125,.26),rgba(169,182,160,.08) 52%,rgba(13,17,21,.2));box-shadow:0 0 90px rgba(229,160,125,.12),inset 0 0 50px rgba(244,239,231,.06);display:grid;place-items:center;animation:float 7s ease-in-out infinite}
+    .orb::before{content:"";position:absolute;inset:18%;border:1px solid rgba(244,239,231,.22);border-radius:50%}
+    .orb::after{content:"";position:absolute;width:1px;height:72%;background:linear-gradient(transparent,var(--accent),transparent);transform:rotate(42deg);opacity:.65}
+    .orb-card{position:relative;z-index:1;width:66%;aspect-ratio:1;border:1px solid rgba(244,239,231,.24);border-radius:28px;background:rgba(21,27,33,.78);backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 20px 45px rgba(0,0,0,.25)}
+    .orb-card small{color:var(--sage);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}
+    .orb-card strong{margin-top:14px;color:var(--ink);font-family:var(--display);font-size:clamp(32px,5vw,54px);font-weight:400;line-height:.9}
+    .orb-card span{margin-top:14px;color:var(--muted);font-size:12px}
+    .status{position:absolute;right:0;bottom:24px;width:min(250px,65%);padding:16px 17px;border:1px solid var(--line);border-radius:16px;background:rgba(21,27,33,.8);backdrop-filter:blur(16px);box-shadow:0 18px 40px rgba(0,0,0,.2)}
+    .status-label{display:flex;align-items:center;gap:8px;color:var(--sage);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800}
+    .status-label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 5px rgba(169,182,160,.12)}
+    .status p{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+    footer{display:flex;justify-content:space-between;gap:16px;padding-top:20px;border-top:1px solid var(--line);color:#777e80;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(2deg)}}
+    @media (prefers-reduced-motion:reduce){.orb{animation:none}.button{transition:none}}
+    @media (max-width:760px){
+      .shell{padding-top:22px}
+      .top-note{display:none}
+      .hero{grid-template-columns:1fr;gap:28px;padding:82px 0 58px}
+      .intro{margin-top:22px}
+      .visual{min-height:360px}
+      .visual::before{width:300px;height:300px}
+      .visual::after{width:230px;height:360px}
+      .orb{width:min(78vw,330px)}
+      .status{right:2%;bottom:0}
+    }
+    @media (max-width:460px){
+      .shell{padding-inline:18px}
+      h1{font-size:clamp(44px,14vw,68px)}
+      .actions{align-items:stretch;flex-direction:column}
+      .button{text-align:center;width:100%}
+      .visual{min-height:330px}
+      .status{position:relative;right:auto;bottom:auto;width:86%;margin:-18px auto 0}
+      footer{flex-direction:column;gap:8px}
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="topbar" aria-label="Navegação principal">
+      <div class="wordmark">Adriana <span>Botelho</span></div>
+      <div class="top-note">um novo capítulo começa aqui</div>
+    </nav>
 
+    <section class="hero">
+      <div class="copy">
+        <div class="eyebrow">Em breve</div>
+        <h1>Algo bonito está <em>ganhando forma.</em></h1>
+        <p class="intro">Estamos preparando um novo espaço para reunir ideias, escolhas e experiências feitas com intenção. Volte em breve.</p>
+        <div class="actions">
+          <a class="button" href="/mapa/">Acessar o mapa</a>
+          <span class="quiet-link">volte em breve</span>
+        </div>
+      </div>
 
+      <div class="visual" aria-label="Prévia do novo espaço">
+        <div class="orb">
+          <div class="orb-card">
+            <small>Adriana Botelho</small>
+            <strong>em<br>breve</strong>
+            <span>feito com calma</span>
+          </div>
+        </div>
+        <div class="status">
+          <div class="status-label">Em construção</div>
+          <p>Uma experiência mais leve, autoral e próxima está chegando.</p>
+        </div>
+      </div>
+    </section>
 
-
-<style>
-/* Layout: mapa mental horizontal, da esquerda para a direita — 5 colunas de decisão + painel de resultado; empilha em telas estreitas */
-:root{
-  /* Manual da marca: verde acinzentado #7E8375, off-white #F2F2F0, verde suave #C8CEC2, areia #E7E7E0, azul profundo #708AA7, azul sereno #D3DFE8, marrom terra #553822 */
-  --bg:#F2F2F0; --surface:#FFFFFF; --ink:#2F3229; --muted:#6A6E61; --line:#C8CEC2; --soft:#E7E7E0;
-  --plum:#5F6556; --plum-ink:#FFFFFF; --title:#553822; --blue:#5A7493; --sage:#5F6556; --sage-bg:#E9EDE5; --coral:#553822;
-  --c-verde:#4CAF50; --c-laranja:#F08A24; --c-vermelha:#D32F2F; --c-roxa:#7B1FA2; --c-branca:#E9E3D3;
-  --display:"Playfair Display", Georgia, "Times New Roman", serif;
-  --body:"Red Hat Display", "Segoe UI", system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#1E201B; --surface:#272A24; --ink:#ECECE6; --muted:#ABAFA2; --line:#474C41; --soft:#32362F;
-  --plum:#C8CEC2; --plum-ink:#1E201B; --title:#E3CBB3; --blue:#A9BDD3; --sage:#C8CEC2; --sage-bg:#2F352C; --coral:#E3CBB3; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#1E201B; --surface:#272A24; --ink:#ECECE6; --muted:#ABAFA2; --line:#474C41; --soft:#32362F;
-  --plum:#C8CEC2; --plum-ink:#1E201B; --title:#E3CBB3; --blue:#A9BDD3; --sage:#C8CEC2; --sage-bg:#2F352C; --coral:#E3CBB3; color-scheme:dark}
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;margin:0;
-  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:28px 40px}
-.wrap{max-width:1320px;margin:0 auto}
-header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-bottom:22px}
-.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
-h1{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:4px 0 6px;color:var(--title);text-wrap:balance}
-.lead{margin:0;color:var(--muted);max-width:60ch}
-.reset{font:inherit;font-weight:700;font-size:13px;letter-spacing:.06em;color:var(--plum);background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}
-.reset:hover{border-color:var(--plum)}
-.map{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr)) minmax(0,1.9fr);gap:28px;align-items:stretch}
-svg.links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
-svg.links path{fill:none;stroke:var(--line);stroke-width:1.6}
-svg.links path.on{stroke:var(--plum);stroke-width:2.2}
-.col{position:relative;z-index:1;display:flex;flex-direction:column;min-width:0}
-.colhead{min-height:64px;margin-bottom:10px}
-.q{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--blue)}
-.qt{font-weight:700;font-size:14.5px;line-height:1.25;margin-top:3px;text-wrap:balance}
-.opts{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:340px}
-.ph{color:var(--muted);font-size:13px;border:1.5px dashed var(--line);border-radius:12px;padding:12px;text-align:center}
-.node{font:inherit;text-align:left;width:100%;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:12px;
-  padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:9px;transition:border-color .15s, background .15s, opacity .15s, transform .15s}
-.node:hover{border-color:var(--plum);transform:translateX(2px)}
-.node:focus-visible{outline:3px solid var(--plum);outline-offset:2px}
-.node .t{font-weight:700;font-size:14.5px;line-height:1.2}
-.node .s{display:block;font-size:12.5px;color:var(--muted);font-weight:500;margin-top:2px}
-.node.sel{background:var(--plum);border-color:var(--plum);color:var(--plum-ink)}
-.node.sel .s{color:var(--plum-ink);opacity:.85}
-.opts.chosen .node:not(.sel){opacity:.45}
-.opts.chosen .node:not(.sel):hover{opacity:1}
-.sw{width:16px;height:16px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.18)}
-.node.papel .t{font-family:var(--display);font-style:italic;font-weight:600;font-size:19px}
-.fade{animation:in .28s ease both}
-@keyframes in{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion: reduce){.fade{animation:none}.node{transition:none}}
-.result{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.path{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font-size:12px;font-weight:700;border-radius:999px;padding:4px 10px;background:var(--soft);color:var(--ink);display:inline-flex;align-items:center;gap:6px}
-.chip .sw{width:11px;height:11px}
-.blk h3{margin:0 0 4px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.blk p{margin:0}
-.fin{background:var(--sage-bg);border-radius:12px;padding:10px 12px}
-.fin h3{color:var(--sage)}
-.rec{display:flex;flex-direction:column;gap:10px}
-.card{border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;flex-direction:column;gap:5px}
-.card .top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.fn{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--blue);white-space:nowrap}
-.card .nm{font-family:var(--display);font-style:italic;font-weight:600;font-size:17px;line-height:1.2;color:var(--title)}
-.tag{font-size:11.5px;font-weight:700;color:var(--muted)}
-.tag.match{color:var(--sage)}
-.card .p3{font-size:13.5px}
-.card .p3 b{color:var(--coral)}
-.note{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
-.empty{color:var(--muted);font-size:13.5px}
-.gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);padding:24px}
-.gate-card{width:min(100%,380px);background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 16px 45px rgba(47,50,41,.12)}
-.gate-card h2{font-family:var(--display);font-style:italic;font-weight:600;font-size:28px;line-height:1.1;color:var(--title);margin:0 0 8px}
-.gate-card p{margin:0;color:var(--muted)}
-.gate-form{display:flex;flex-direction:column;gap:10px;margin-top:18px}
-.gate-form label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.gate-form input{font:inherit;font-size:18px;letter-spacing:.2em;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;outline:none}
-.gate-form input:focus{border-color:var(--plum);box-shadow:0 0 0 3px color-mix(in srgb, var(--plum) 20%, transparent)}
-.gate-form button{font:inherit;font-weight:700;color:var(--plum-ink);background:var(--plum);border:1.5px solid var(--plum);border-radius:10px;padding:11px 14px;cursor:pointer}
-.gate-form button:hover{filter:brightness(.95)}
-.gate-error{font-size:13px!important;color:var(--coral)!important}
-body:has(> .gate:not([hidden])){overflow:hidden}
-body > .gate:not([hidden]) ~ .wrap{visibility:hidden}
-@media (max-width: 980px){
-  body{padding-block:22px 32px}
-  header{align-items:flex-start;margin-bottom:18px}
-  .map{grid-template-columns:1fr;gap:18px}
-  svg.links{display:none}
-  .opts{min-height:0;flex-direction:column;gap:8px}
-  .opts .node{width:100%;flex:0 0 auto;min-height:48px;padding:11px 13px}
-  .node .t{font-size:14px}
-  .node .s{font-size:12px}
-  .colhead{min-height:0;margin-bottom:8px}
-  .col.idle{display:none}
-  .result{padding:14px;gap:12px}
-  .card .nm,.card .p3,.blk p{overflow-wrap:anywhere}
-}
-@media (max-width: 600px){
-  body{padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px));padding-block:18px 28px}
-  header{display:block}
-  header>.reset{display:block;width:100%;margin-top:14px}
-  .eyebrow{font-size:11px}
-  h1{font-size:clamp(30px,10vw,38px)}
-  .lead{font-size:14px}
-  .qt{font-size:14px}
-  .result{border-radius:14px}
-  .path{gap:5px}
-  .chip{font-size:11px;padding:4px 8px}
-  .card{padding:10px 11px}
-  .card .nm{font-size:16px}
-}
-</style>
-
-  <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
-    <div class="gate-card">
-      <h2 id="gate-title">Mapa da guarnição</h2>
-      <p>Digite a senha para acessar a árvore interativa.</p>
-      <form class="gate-form" id="gate-form">
-        <label for="gate-password">Senha</label>
-        <input id="gate-password" type="password" inputmode="numeric" autocomplete="off" required autofocus>
-        <button type="submit">Acessar mapa</button>
-        <p class="gate-error" id="gate-error" role="alert" hidden>Senha incorreta. Tente novamente.</p>
-      </form>
-    </div>
-  </div>
-
-<div class="wrap">
-  <header>
-    <div>
-      <div class="eyebrow">Escolhi a proteína. E agora?</div>
-      <h1>Mapa da guarnição</h1>
-      <p class="lead">Clique nas respostas, da esquerda para a direita. No fim, aparecem o preparo, a finalização e as fichas do Bônus 1 que resolvem o seu prato.</p>
-      <p class="lead" style="margin-top:6px;font-size:13px">Versão independente: funciona neste navegador, sem cadastro e sem internet.</p>
-      <p class="lead" id="ex" style="margin-top:6px;font-size:13px">Exemplo aberto: frango assado com arroz e feijão. Clique em qualquer resposta para mudar o caminho.</p>
-    </div>
-    <button class="reset" id="reset" type="button">Começar de novo</button>
-  </header>
-  <div class="map" id="map">
-    <svg class="links" id="links" aria-hidden="true"></svg>
-  </div>
-</div>
-
-<script>
-const R = [{"n": 1, "nome": "Quiabo ensopado com tomate, cominho e limão", "papel": "macia", "cor": "verde", "cat": "refogada", "tec": "ensopada", "fin": {"pesado": "mais limão, espremido na hora de servir.", "seco": "o próprio molho de tomate já traz a umidade que falta.", "equilibrado": "coentro ou salsinha frescos por cima."}}, {"n": 2, "nome": "Abobrinha refogada com alho, limão e hortelã", "papel": "macia", "cor": "verde", "cat": "refogada", "tec": "refogada", "fin": {"pesado": "mais limão, espremido na hora.", "seco": "uma colherada de iogurte natural com limão por cima.", "equilibrado": "mais hortelã, ou salsinha."}}, {"n": 3, "nome": "Cenoura glaceada ao curry com uva-passa e amêndoas", "papel": "macia", "cor": "laranja", "cat": "refogada", "tec": "cozida no caldo", "fin": {"pesado": "mais limão, espremido por cima na hora de servir.", "seco": "a calda da própria cenoura já umedece o prato.", "equilibrado": "coentro ou salsinha picados por cima."}}, {"n": 4, "nome": "Pimentão amarelo refogado com azeitonas e alcaparras", "papel": "macia", "cor": "laranja", "cat": "refogada", "tec": "refogada", "fin": {"pesado": "o vinagre do tempero já corta a gordura.", "seco": "o azeite do refogado já umedece o prato.", "equilibrado": "folhas de manjericão rasgadas por cima."}}, {"n": 5, "nome": "Beterraba dourada na frigideira com molho de tahine e limão", "papel": "macia", "cor": "vermelha", "cat": "refogada", "tec": "dourada na frigideira", "fin": {"pesado": "mais limão no molho.", "seco": "mais molho no fundo da travessa (faça o dobro, se precisar).", "equilibrado": "só a cebolinha por cima."}}, {"n": 6, "nome": "Peperonata agridoce de pimentão vermelho", "papel": "macia", "cor": "vermelha", "cat": "refogada", "tec": "refogada", "fin": {"pesado": "o agridoce do vinagre já corta a gordura.", "seco": "o azeite da peperonata já umedece o prato.", "equilibrado": "folhas de manjericão rasgadas por cima."}}, {"n": 7, "nome": "Repolho roxo braseado com maçã ralada e mostarda", "papel": "macia", "cor": "roxa", "cat": "refogada", "tec": "braseada", "fin": {"pesado": "mais vinagre de vinho tinto, para cortar a gordura.", "seco": "o braseado já é úmido e dispensa molho.", "equilibrado": "salsinha picada por cima."}}, {"n": 8, "nome": "Cebola roxa assada com balsâmico e tomilho", "papel": "macia", "cor": "roxa", "cat": "outra", "tec": "assada", "fin": {"pesado": "um fio extra de balsâmico na hora de servir.", "seco": "o caldo do fundo da assadeira, regado por cima, já umedece o prato.", "equilibrado": "folhas de tomilho fresco ou salsinha por cima."}}, {"n": 9, "nome": "Alho-poró no azeite com limão", "papel": "macia", "cor": "branca", "cat": "refogada", "tec": "cozida no azeite", "fin": {"pesado": "mais suco de limão-siciliano.", "seco": "o caldo do cozimento já umedece o prato.", "equilibrado": "endro ou salsinha picados por cima."}}, {"n": 10, "nome": "Acelga braseada com gengibre e manteiga", "papel": "macia", "cor": "branca", "cat": "refogada", "tec": "braseada", "fin": {"pesado": "mais vinagre ou limão no caldo.", "seco": "sirva com todo o caldo reduzido por cima.", "equilibrado": "cebolinha e coentro picados por cima."}}, {"n": 11, "nome": "Vagem à genovesa com lascas de alho e limão", "papel": "leve", "cor": "verde", "cat": "vapor", "tec": "cozida rápido", "fin": {"pesado": "o limão do molho já dá conta; sirva como está.", "seco": "mais um fio de azeite por cima.", "equilibrado": "sirva como está."}}, {"n": 12, "nome": "Pepino amassado com limão, cebola roxa e ervas", "papel": "leve", "cor": "verde", "cat": "crua", "tec": "crua", "fin": {"pesado": "mais limão.", "seco": "mais azeite.", "equilibrado": "hortelã picada por cima."}}, {"n": 13, "nome": "Chuchu cru em lâminas com limão, hortelã e amendoim", "papel": "leve", "cor": "verde", "cat": "crua", "tec": "crua", "fin": {"pesado": "mais limão.", "seco": "um fio a mais de azeite.", "equilibrado": "hortelã e coentro juntos."}}, {"n": 14, "nome": "Salada marroquina de cenoura e laranja", "papel": "leve", "cor": "laranja", "cat": "crua", "tec": "crua", "fin": {"pesado": "a acidez já está no molho; sirva como está.", "seco": "mais um fio de azeite.", "equilibrado": "hortelã picada por cima."}}, {"n": 15, "nome": "Picles rápido de abóbora com gengibre", "papel": "leve", "cor": "laranja", "cat": "crua", "tec": "em conserva", "fin": {"pesado": "sirva com um pouco da própria salmoura.", "seco": "escorra bem e regue com um fio de azeite.", "equilibrado": "coentro ou salsinha por cima."}}, {"n": 16, "nome": "Ezme: salada turca picante de tomate", "papel": "leve", "cor": "vermelha", "cat": "crua", "tec": "crua", "fin": {"pesado": "já é ácida; sirva como está.", "seco": "mais azeite.", "equilibrado": "sirva como está."}}, {"n": 17, "nome": "Repolho roxo em conserva rápida com raspas de limão", "papel": "leve", "cor": "roxa", "cat": "crua", "tec": "em conserva", "fin": {"pesado": "já é ácido; sirva escorrido.", "seco": "sirva com um fio de azeite.", "equilibrado": "salsinha picada por cima."}}, {"n": 18, "nome": "Tabule de couve-flor crua", "papel": "leve", "cor": "branca", "cat": "crua", "tec": "crua", "fin": {"pesado": "já é bem ácido; sirva como está.", "seco": "mais azeite.", "equilibrado": "hortelã picada por cima."}}, {"n": 19, "nome": "Salada de erva-doce com laranja e azeitonas", "papel": "leve", "cor": "branca", "cat": "crua", "tec": "crua", "fin": {"pesado": "mais um pouco de limão no molho.", "seco": "um fio a mais de azeite.", "equilibrado": "só as folhinhas da erva-doce."}}, {"n": 20, "nome": "Ervilha-torta com sal de gergelim, gengibre e limão", "papel": "firme", "cor": "verde", "cat": "salteada", "tec": "salteada", "fin": {"pesado": "gotas de limão por cima.", "seco": "um fio de azeite.", "equilibrado": "só o sal de gergelim."}}, {"n": 21, "nome": "Abobrinha selada com balsâmico, páprica e hortelã", "papel": "firme", "cor": "verde", "cat": "salteada", "tec": "selada", "fin": {"pesado": "a redução já traz a acidez que corta a gordura; sirva como está.", "seco": "um fio de azeite por cima.", "equilibrado": "só a hortelã."}}, {"n": 22, "nome": "Abóbora cabotiá assada com molho de limão e castanha-do-pará", "papel": "firme", "cor": "laranja", "cat": "assada", "tec": "assada", "fin": {"pesado": "o molho de limão já faz o papel ácido; sirva como está.", "seco": "dobre o molho e regue com generosidade.", "equilibrado": "finalize com salsinha picada."}}, {"n": 23, "nome": "Tomate-cereja e pimentão tostados com molho de páprica defumada", "papel": "firme", "cor": "vermelha", "cat": "salteada", "tec": "tostada na frigideira", "fin": {"pesado": "o vinagre do molho já faz o corte; sirva como está.", "seco": "mais um fio de azeite por cima.", "equilibrado": "só o manjericão."}}, {"n": 24, "nome": "Salada de repolho roxo tostado com limão grelhado e pera", "papel": "firme", "cor": "roxa", "cat": "salteada", "tec": "tostada na frigideira", "fin": {"pesado": "o limão já faz o trabalho; sirva como está.", "seco": "mais um fio de azeite.", "equilibrado": "finalize com coentro ou salsinha."}}, {"n": 25, "nome": "Cogumelos salteados ao alho e tomilho", "papel": "firme", "cor": "branca", "cat": "salteada", "tec": "salteada", "fin": {"pesado": "gotas de limão por cima.", "seco": "um fio de azeite.", "equilibrado": "só a salsinha."}}, {"n": 26, "nome": "Couve-flor dourada na frigideira com páprica e molho verde", "papel": "firme", "cor": "branca", "cat": "salteada", "tec": "dourada na frigideira", "fin": {"pesado": "reforce o limão no molho verde.", "seco": "sirva mais molho verde.", "equilibrado": "só o molho verde por cima."}}, {"n": 27, "nome": "Palmito pupunha grelhado com molho rápido de tomate e salsinha", "papel": "firme", "cor": "branca", "cat": "salteada", "tec": "grelhada na frigideira", "fin": {"pesado": "gotas de limão sobre o palmito.", "seco": "mais molho de tomate e um fio de azeite.", "equilibrado": "só a salsinha."}}, {"n": 28, "nome": "Vagem tostada na frigideira com amêndoas, hortelã e limão", "papel": "crocante", "cor": "verde", "cat": "assada", "tec": "tostada na frigideira", "fin": {"pesado": "mais suco de limão por cima, na hora de servir.", "seco": "um fio de azeite sobre a vagem.", "equilibrado": "só mais algumas folhas de hortelã."}}, {"n": 29, "nome": "Maxixe assado com farofa de alho e castanha-de-caju", "papel": "crocante", "cor": "verde", "cat": "assada", "tec": "assada", "fin": {"pesado": "limão espremido na hora sobre o maxixe, para a acidez cortar a gordura.", "seco": "um fio de azeite por cima do maxixe e da farofa.", "equilibrado": "só o coentro."}}, {"n": 30, "nome": "Salada de cenoura com pistache, uva-passa e molho de tahine", "papel": "crocante", "cor": "laranja", "cat": "crua", "tec": "crua", "fin": {"pesado": "mais limão sobre a salada.", "seco": "mais molho de tahine.", "equilibrado": "mais hortelã."}}, {"n": 31, "nome": "Cenoura tostada na frigideira com farofinha de pimenta síria", "papel": "crocante", "cor": "laranja", "cat": "assada", "tec": "tostada na frigideira", "fin": {"pesado": "gotas de limão sobre a cenoura.", "seco": "uma colherada de iogurte natural ao lado.", "equilibrado": "só a farofinha."}}, {"n": 32, "nome": "Rabanete assado com mel e limão, molho de iogurte e farofinha de pistache", "papel": "crocante", "cor": "vermelha", "cat": "assada", "tec": "assada", "fin": {"pesado": "mais limão no tempero das folhas.", "seco": "mais molho de iogurte.", "equilibrado": "só a farofinha."}}, {"n": 33, "nome": "Tomate à provençal com crosta crocante de pão e ervas", "papel": "crocante", "cor": "vermelha", "cat": "assada", "tec": "assada", "fin": {"pesado": "salsinha picada e gotas de limão por cima.", "seco": "não precisa de ajuste: o suco do tomate já umedece o prato.", "equilibrado": "folhas de manjericão."}}, {"n": 34, "nome": "Berinjela assada com romã, tahine e castanha-de-caju", "papel": "crocante", "cor": "roxa", "cat": "assada", "tec": "assada", "fin": {"pesado": "mais limão no molho de tahine.", "seco": "mais molho de tahine.", "equilibrado": "só a salsinha."}}, {"n": 35, "nome": "Salada de repolho roxo com laranja e sementes de abóbora", "papel": "crocante", "cor": "roxa", "cat": "crua", "tec": "crua", "fin": {"pesado": "não precisa de ajuste: a salada já é cítrica.", "seco": "mais um fio de azeite.", "equilibrado": "só o coentro."}}, {"n": 36, "nome": "Repolho assado em gomos com farofinha de gergelim e tahine", "papel": "crocante", "cor": "branca", "cat": "assada", "tec": "assada", "fin": {"pesado": "mais limão no molho de tahine.", "seco": "mais molho de tahine.", "equilibrado": "salsinha picada por cima."}}];
-const CORES = {verde:['Verde','var(--c-verde)'],laranja:['Laranja ou amarela','var(--c-laranja)'],vermelha:['Vermelha','var(--c-vermelha)'],roxa:['Roxa','var(--c-roxa)'],branca:['Branca','var(--c-branca)']};
-const P1 = [
-  {id:'assada', t:'Assada ou grelhada', s:'firme, dourada, seca na superfície', papel:'macia'},
-  {id:'frita', t:'Frita ou empanada', s:'crocante e gordurosa', papel:'leve'},
-  {id:'cozida', t:'Cozida ou ensopada', s:'macia, com molho', papel:'firme'},
-  {id:'refogada', t:'Refogada, desfiada ou moída', s:'macia, em pedaços pequenos', papel:'crocante'}];
-const PAPEL = {macia:{t:'Macia',s:'traz maciez e suco'}, leve:{t:'Leve',s:'traz acidez e frescor'}, firme:{t:'Firme',s:'traz mordida e estrutura'}, crocante:{t:'Crocante',s:'traz o contraste que falta'}};
-const TEC = {
-  macia:[{id:'refogada',t:'Refogada',d:'Refogue em fogo médio com um fio de azeite, sem tampar, de 6 a 10 minutos, até a faca entrar sem resistência. Alho só no último minuto, e sal no fim.'},
-         {id:'vapor',t:'No vapor',d:'Cozinhe no vapor de 8 a 12 minutos, até ficar macia. Tempere depois, ainda morna: ela absorve melhor o tempero.'}],
-  leve:[{id:'crua',t:'Crua',d:'Fatie fino, rale ou corte em palitos. Tempere só na hora de servir, para não murchar.'},
-        {id:'vapor',t:'No vapor',d:'Vapor rápido, de 3 a 5 minutos, e direto para a água gelada. A cor fica viva e a textura, leve.'}],
-  firme:[{id:'crua',t:'Crua',d:'Corte em pedaços com mordida (palitos, lâminas grossas, tiras) e tempere na hora.'},
-         {id:'salteada',t:'Salteada rápido',d:'Frigideira bem quente, de 3 a 5 minutos, mexendo pouco e sem lotar a panela: dourada por fora, firme por dentro.'},
-         {id:'assada',t:'Assada',d:'Forno a 220 °C, pedaços médios espalhados na assadeira, de 20 a 30 minutos, até dourar as bordas.'}],
-  crocante:[{id:'assada',t:'Assada',d:'Forno alto, de 220 a 230 °C, pedaços pequenos bem espalhados, até tostar. Termine com gergelim, castanhas ou sementes.'},
-            {id:'crua',t:'Crua',d:'Em lâminas ou palitos, com castanhas, sementes ou farofa por cima na hora de servir.'}]};
-const P3 = [
-  {id:'pesado',t:'Pesado',s:'fritura, gordura, molho cremoso',f:'Frescor',fd:'Limão, vinagre, cebola roxa crua ou conserva rápida.'},
-  {id:'seco',t:'Seco',s:'grelhado magro, assado sem molho',f:'Umidade',fd:'Iogurte natural com limão, tomate picado ou um fio de azeite.'},
-  {id:'equilibrado',t:'Equilibrado',s:'nem pesado nem seco',f:'Ervas frescas',fd:'Salsinha, cebolinha, hortelã ou coentro por cima.'}];
-
-const state = {p1:'assada', tec:'refogada', cor:'verde', p3:'seco'};
-const map = document.getElementById('map'), svg = document.getElementById('links');
-const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-
-function col(q, qt, body, idle){
-  return `<section class="col${idle?' idle':''}"><div class="colhead"><div class="q">${q}</div><div class="qt">${qt}</div></div>${body}</section>`;
-}
-function opts(list, key, render){
-  const chosen = state[key] != null;
-  return `<div class="opts${chosen?' chosen':''} fade" data-key="${key}">` + list.map(o => {
-    const sel = state[key] === o.id;
-    return `<button class="node${sel?' sel':''}${render.cls?' '+render.cls:''}" type="button" data-key="${key}" data-id="${o.id}" aria-pressed="${sel}">${render(o)}</button>`;
-  }).join('') + `</div>`;
-}
-const ph = txt => `<div class="opts"><div class="ph">${txt}</div></div>`;
-
-function render(){
-  const p1 = P1.find(x => x.id === state.p1);
-  const papel = p1 ? p1.papel : null;
-  let h = '';
-  h += col('Pergunta 1', 'Como a proteína foi preparada?', opts(P1, 'p1', o => `<span><span class="t">${o.t}</span><span class="s">${o.s}</span></span>`));
-  h += col('A hortaliça vai', 'Que papel ela cumpre?', p1 ? `<div class="opts chosen fade"><button class="node sel papel" type="button" tabindex="-1" aria-pressed="true" data-key="papel" data-id="${papel}"><span><span class="t">${PAPEL[papel].t}</span><span class="s">${PAPEL[papel].s}</span></span></button></div>` : ph('Escolha o preparo da proteína'), !p1);
-  const tecs = papel ? TEC[papel] : [];
-  h += col('Como preparar', 'Escolha o preparo', papel ? opts(tecs, 'tec', o => `<span class="t">${o.t}</span>`) : ph('Aparece depois da Pergunta 1'), !papel);
-  const cores = Object.entries(CORES).map(([id,[t,c]]) => ({id,t,c}));
-  h += col('Pergunta 2', 'Que cor de hortaliça você tem em casa?', state.tec ? opts(cores, 'cor', o => `<span class="sw" style="background:${o.c}"></span><span class="t">${o.t}</span>`) : ph('Escolha como preparar'), !state.tec);
-  h += col('Pergunta 3', 'O prato ficou pesado ou seco?', state.cor ? opts(P3, 'p3', o => `<span><span class="t">${o.t} → ${o.f.toLowerCase()}</span><span class="s">${o.s}</span></span>`) : ph('Escolha a cor'), !state.cor);
-  h += col('Resultado', 'Sua guarnição', result(papel), !state.p3);
-  map.innerHTML = '<svg class="links" id="links" aria-hidden="true"></svg>' + h;
-  map.querySelectorAll('button.node[data-key]').forEach(b => { if (b.dataset.key !== 'papel') b.addEventListener('click', () => choose(b.dataset.key, b.dataset.id)); });
-  requestAnimationFrame(draw);
-}
-
-function result(papel){
-  if (!state.p3) return `<div class="result"><p class="empty">Responda as três perguntas para ver o preparo, a finalização e as fichas do Bônus 1 indicadas para o seu prato.</p></div>`;
-  const p1 = P1.find(x => x.id === state.p1), tec = TEC[papel].find(x => x.id === state.tec), p3 = P3.find(x => x.id === state.p3);
-  const [corT, corC] = CORES[state.cor];
-  const list = R.filter(r => r.papel === papel && r.cor === state.cor).sort((a,b) => (b.cat === state.tec) - (a.cat === state.tec) || a.n - b.n);
-  const cards = list.map(r => `<div class="card"><div class="top"><span class="fn">Ficha ${r.n}</span><span class="tag${r.cat===state.tec?' match':''}">${r.cat===state.tec?'mesmo preparo':esc(r.tec)}</span></div>
-    <div class="nm">${esc(r.nome)}</div><div class="p3"><b>Para o seu prato:</b> ${esc(r.fin[state.p3] || '')}</div></div>`).join('');
-  return `<div class="result fade">
-    <div class="path"><span class="chip">${p1.t}</span><span class="chip">${PAPEL[papel].t}</span><span class="chip">${tec.t}</span><span class="chip"><span class="sw" style="background:${corC}"></span>${corT}</span><span class="chip">${p3.t} → ${p3.f.toLowerCase()}</span></div>
-    <div class="blk"><h3>Preparo básico</h3><p>${tec.d}</p></div>
-    <div class="blk fin"><h3>Finalize com ${p3.f.toLowerCase()}</h3><p>${p3.fd}</p></div>
-    <div class="blk"><h3>Fichas do Bônus 1</h3><div class="rec">${cards}</div></div>
-    <p class="note">A hortaliça deve trazer uma cor diferente das que já estão no prato. Se a sua proteína já tem essa cor, volte à Pergunta 2 e escolha outra.</p>
-  </div>`;
-}
-
-function choose(key, id){
-  const order = ['p1','tec','cor','p3'];
-  const i = order.indexOf(key);
-  state[key] = id;
-  order.slice(i+1).forEach(k => state[k] = null);
-  const ex = document.getElementById('ex'); if (ex) ex.hidden = true;
-  render();
-  if (window.matchMedia('(max-width: 980px)').matches){
-    const colIdx = {p1:2, tec:3, cor:4, p3:5}[key];
-    const tgt = map.querySelectorAll('.col')[colIdx];
-    if (tgt) tgt.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
-  }
-}
-
-function draw(){
-  const s = document.getElementById('links'); if (!s) return;
-  if (getComputedStyle(s).display === 'none') return;
-  const box = map.getBoundingClientRect();
-  const cols = [...map.querySelectorAll('.col')];
-  let paths = '';
-  for (let c = 0; c < cols.length - 1; c++){
-    const from = cols[c].querySelector('.node.sel');
-    if (!from) continue;
-    const targets = cols[c+1].querySelectorAll('.node, .result');
-    const a = from.getBoundingClientRect();
-    const x1 = a.right - box.left, y1 = a.top + a.height/2 - box.top;
-    targets.forEach(t => {
-      const b = t.getBoundingClientRect();
-      const x2 = b.left - box.left, y2 = (t.classList.contains('result') ? b.top + 28 : b.top + b.height/2) - box.top;
-      const mx = (x1 + x2) / 2;
-      const on = t.classList.contains('sel') || t.classList.contains('result') || cols[c+1].querySelectorAll('.node').length === 1;
-      paths += `<path class="${on?'on':''}" d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}"/>`;
-    });
-  }
-  s.innerHTML = paths;
-}
-document.getElementById('reset').addEventListener('click', () => { Object.keys(state).forEach(k => state[k] = null); const ex = document.getElementById('ex'); if (ex) ex.hidden = true; render(); window.scrollTo({top:0}); });
-window.addEventListener('resize', () => requestAnimationFrame(draw));
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
-render();
-const gateForm = document.getElementById('gate-form');
-const gatePassword = document.getElementById('gate-password');
-const gateError = document.getElementById('gate-error');
-gateForm.addEventListener('submit', event => {
-  event.preventDefault();
-  if (gatePassword.value === '2026') {
-    document.getElementById('gate').hidden = true;
-    gatePassword.value = '';
-  } else {
-    gateError.hidden = false;
-    gatePassword.select();
-  }
-});
-gatePassword.addEventListener('input', () => { gateError.hidden = true; });
-</script>
-
-</body></html>
+    <footer>
+      <span>adrianabotelho.com.br</span>
+      <span>© 2026 Adriana Botelho</span>
+    </footer>
+  </main>
+</body>
+</html>

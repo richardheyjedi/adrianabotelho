@@ -1,17 +1,19 @@
-# Árvore interativa
+# Adriana Botelho
 
-Versão independente e responsiva, protegida por senha no navegador.
-
-O acesso é liberado somente após informar a senha definida na página. Como este é um site estático, a barreira não substitui autenticação no servidor: o conteúdo continua tecnicamente acessível no código-fonte.
+Home “Em breve” em `adrianabotelho.com.br` e mapa interativo protegido em `adrianabotelho.com.br/mapa/`.
 
 ## Rodar localmente
 
-Na pasta deste projeto, execute:
+Na pasta deste projeto:
 
 ```powershell
 node server.mjs
 ```
 
-Depois abra <http://127.0.0.1:4173> ou a página da árvore em <http://127.0.0.1:4173/arvore/>.
+Abra <http://127.0.0.1:4173> para ver a home ou <http://127.0.0.1:4173/mapa/> para acessar o mapa.
 
-Para publicar no GitHub Pages, envie o `index.html` e a pasta `arvore/` para um repositório e ative Pages em **Settings → Pages → Deploy from a branch**. A rota ficará disponível em `/arvore/`.
+O mapa pede a senha definida na página. Como é um site estático, essa barreira não substitui autenticação no servidor.
+
+## GitHub Pages
+
+O arquivo `CNAME` aponta para `adrianabotelho.com.br`. No GitHub, ative Pages em **Settings → Pages → Deploy from a branch** usando a branch `main`.
