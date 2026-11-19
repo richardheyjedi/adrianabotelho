@@ -96,8 +96,6 @@
     .destaque h2 { margin: 0; color: var(--forest); font-family: var(--display); font-size: clamp(28px, 6vw, 38px); font-weight: 400; line-height: 1.05; letter-spacing: -.045em; }
     .destaque p { max-width: 470px; margin: 11px 0 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
     .em-breve { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 51px; margin-top: 18px; padding: 10px 14px 10px 16px; border: 1px dashed rgba(91, 123, 92, .65); border-radius: 16px; color: var(--moss); background: var(--paper); font-size: 13px; font-weight: 800; }
-    .em-breve::after { display: grid; place-items: center; width: 28px; height: 28px; content: "→"; border-radius: 50%; color: var(--white); background: var(--moss); font-size: 17px; transition: transform .25s; }
-    .destaque:hover .em-breve::after { transform: translateX(3px); }
 
     .links { display: grid; gap: 11px; }
     .link { position: relative; display: flex; align-items: center; gap: 13px; min-height: 70px; overflow: hidden; padding: 11px 14px; border: 1px solid var(--line); border-radius: 18px; color: var(--ink); background: rgba(255, 254, 251, .82); text-decoration: none; box-shadow: 0 6px 16px rgba(24, 61, 43, .035); transition: transform .25s, border-color .25s, background .25s, box-shadow .25s; }
