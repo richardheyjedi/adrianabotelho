@@ -24,7 +24,7 @@ export function HomeArticlesCarousel({ articles }: { articles: Article[] }) {
     <div className="home-carousel-viewport">
       <div className="home-carousel-track" style={{ transform: `translate3d(-${active * 100}%, 0, 0)` }}>
         {articles.map((article, index) => <article className="home-article-slide" key={article.slug} aria-hidden={active !== index}>
-          <div className="home-article-image"><Image src={article.image} alt={article.imageAlt} fill sizes="(max-width: 720px) 100vw, 50vw" priority={index === 0} /></div>
+          <div className="home-article-image"><Image src={article.image} alt={article.imageAlt} fill sizes="(max-width: 720px) 100vw, 50vw" priority={index === 0} data-parallax="soft" /></div>
           <div className="home-article-copy">
             <div className="article-meta"><span>{article.category}</span><span>{article.readTime}</span></div>
             <span className="home-article-index">0{index + 1} / 03</span>
