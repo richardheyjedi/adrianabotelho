@@ -203,19 +203,21 @@ img { max-width: 100%; }
 .page-hero-copy { max-width: 390px; color: var(--muted); font-size: 17px; line-height: 1.7; }
 .about-hero { padding-bottom: 126px; background: var(--ivory); }
 .about-hero-grid { display: grid; grid-template-columns: .88fr 1.12fr; align-items: center; gap: clamp(46px, 8vw, 118px); }
-.about-hero-copy .page-hero-copy { margin: 28px 0 27px; }
+.about-hero-copy { max-width: 620px; }
+.about-hero-copy .page-hero-copy { max-width: 450px; margin: 32px 0 30px; line-height: 1.8; }
 .about-hero-art { position: relative; min-height: 555px; }
 .about-hero-main { position: absolute; top: 0; left: 6%; width: 56%; height: 88%; overflow: hidden; background: var(--sage); box-shadow: 18px 18px 0 var(--forest); }
 .about-hero-main img { object-fit: cover; object-position: center top; mix-blend-mode: multiply; }
 .about-hero-detail { position: absolute; right: 0; bottom: 0; width: 53%; height: 57%; overflow: hidden; border: 10px solid var(--ivory); background: var(--cream); box-shadow: 19px 20px 0 var(--terracotta); transform: rotate(3deg); }
 .about-hero-detail img { object-fit: cover; }
 .about-hero-note { position: absolute; top: 11%; right: 2%; color: var(--terracotta); font-size: 10px; font-weight: 900; letter-spacing: .14em; line-height: 1.45; text-align: right; text-transform: uppercase; }
-.story-block { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(40px, 8vw, 120px); }
+.story-block { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: clamp(40px, 8vw, 120px); }
 .story-block.reverse { grid-template-columns: 1.2fr .8fr; }
 .story-block.reverse .story-text { order: -1; }
-.story-text h2 { margin: 0 0 22px; color: var(--forest); font-family: var(--serif); font-size: clamp(40px, 5vw, 66px); font-weight: 400; line-height: 1; letter-spacing: -.055em; }
-.story-text p { margin: 0 0 18px; color: var(--muted); font-size: 17px; line-height: 1.8; }
-.story-visual { position: relative; min-height: 500px; overflow: hidden; }
+.story-text { max-width: 660px; }
+.story-text h2 { max-width: 520px; margin: 0 0 28px; color: var(--forest); font-family: var(--serif); font-size: clamp(40px, 5vw, 66px); font-weight: 400; line-height: .98; letter-spacing: -.055em; }
+.story-text p { max-width: 630px; margin: 0 0 22px; color: var(--muted); font-size: 17px; line-height: 1.82; }
+.story-visual { position: relative; min-height: 500px; aspect-ratio: .82; overflow: hidden; background: var(--sage); box-shadow: 16px 16px 0 var(--sage); }
 .story-image { object-fit: cover; }
 .story-visual .image-placeholder { height: 100%; }
 .image-placeholder { position: relative; display: flex; min-height: 320px; flex-direction: column; justify-content: end; overflow: hidden; padding: 28px; background: var(--sage); }
@@ -233,6 +235,12 @@ img { max-width: 100%; }
 .tone-forest span, .tone-forest strong, .tone-forest small { color: var(--ivory); }
 .manifesto { max-width: 980px; margin: 0 auto; color: var(--ivory); font-family: var(--serif); font-size: clamp(38px, 5.7vw, 76px); line-height: .99; letter-spacing: -.055em; }
 .manifesto em { color: var(--sage); font-style: italic; }
+.manifesto-typing { position: relative; }
+.manifesto-typing .manifesto { margin-left: 0; }
+.manifesto-typing [data-manifesto-char] { display: inline-block; }
+.manifesto-emphasis { color: var(--sage); font-style: italic; }
+.manifesto-caret { display: inline-block; width: 3px; height: .78em; margin-left: 8px; vertical-align: -.06em; background: var(--terracotta); animation: manifesto-blink .9s steps(1, end) infinite; }
+@keyframes manifesto-blink { 50% { opacity: .15; } }
 .pillar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 55px; }
 .pillar { padding: 22px 0; border-top: 1px solid rgba(248,246,240,.28); }
 .pillar span { color: var(--terracotta); font-size: 11px; font-weight: 900; letter-spacing: .15em; }
@@ -408,7 +416,7 @@ img[data-parallax], .material-device[data-parallax] { will-change: transform; }
   .faq-item button { font-size: 20px; }
   .page-hero { padding: 145px 0 80px; }
   .page-hero h1, .article-page-hero h1 { font-size: clamp(52px, 15vw, 75px); }
-  .story-visual { min-height: 360px; }
+  .story-visual { min-height: 360px; aspect-ratio: 1 / 1.08; box-shadow: 10px 10px 0 var(--sage); }
   .brand-origin-visual { min-height: 360px; }
   .roadmap-step { grid-template-columns: 1fr; gap: 12px; padding-left: 0; }
   .roadmap-step::before { left: 12px; top: 23px; }
