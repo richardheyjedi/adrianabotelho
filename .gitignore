@@ -4,3 +4,6 @@ out/
 .vercel/
 *.tsbuildinfo
 npm-debug.log*
+
+.vercel
+.env*
