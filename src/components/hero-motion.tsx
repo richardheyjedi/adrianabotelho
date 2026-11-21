@@ -17,6 +17,7 @@ export function HeroMotion({ children }: PropsWithChildren) {
       timeline.from('[data-hero-label]', { autoAlpha: 0, y: 18, duration: .45 })
         .from('[data-hero-line]', { autoAlpha: 0, yPercent: 105, stagger: .08, duration: .8 }, '-=.16')
         .from('[data-hero-copy]', { autoAlpha: 0, y: 20, duration: .55 }, '-=.35')
+        .from('[data-hero-cta]', { autoAlpha: 0, y: 12, scale: .96, duration: .45 }, '-=.22')
         .from('[data-hero-art]', { autoAlpha: 0, y: 32, scale: .96, duration: 1.05 }, '-=.75')
         .from('[data-hero-stamp]', { autoAlpha: 0, scale: .72, rotation: -14, duration: .6 }, '-=.55')
         .from('[data-hero-scroll]', { autoAlpha: 0, y: 12, duration: .4 }, '-=.3');

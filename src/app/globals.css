@@ -74,11 +74,16 @@ img { max-width: 100%; }
 .home-hero::before { position: absolute; top: -220px; right: -160px; width: 600px; height: 600px; content: ''; border: 1px solid rgba(169,183,165,.25); border-radius: 50%; box-shadow: 0 0 0 35px rgba(169,183,165,.05), 0 0 0 80px rgba(169,183,165,.03); }
 .home-hero::after { position: absolute; bottom: -300px; left: -160px; width: 520px; height: 520px; content: ''; border: 1px solid rgba(185,130,105,.28); border-radius: 50%; }
 .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, .85fr); align-items: center; gap: clamp(48px, 8vw, 118px); }
-.hero-copy h1 { max-width: 700px; margin: 0 0 26px; color: var(--ivory); font-family: var(--serif); font-size: clamp(58px, 8.2vw, 112px); font-weight: 400; line-height: .92; letter-spacing: -.07em; }
+.hero-copy h1 { max-width: 780px; margin: 0 0 34px; color: var(--ivory); font-family: var(--serif); font-size: clamp(62px, 8.8vw, 124px); font-weight: 400; line-height: .89; letter-spacing: -.07em; }
 .hero-copy h1 em { color: var(--sage); font-style: italic; }
-.hero-copy > p:not(.eyebrow) { max-width: 490px; margin-bottom: 34px; color: rgba(248,246,240,.72); font-size: 18px; line-height: 1.65; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-copy [data-hero-copy] { max-width: 520px; }
+.hero-copy [data-hero-copy] > p { max-width: 490px; margin: 0 0 38px; color: rgba(248,246,240,.78); font-size: 18px; line-height: 1.72; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
 .hero-actions .button-light { border-color: rgba(248,246,240,.5); }
+.home-hero .hero-primary-cta { min-height: 60px; padding: 0 28px; border-color: var(--ivory); background: var(--ivory); color: var(--forest); box-shadow: 0 16px 34px rgba(0,0,0,.17); font-size: 13px; }
+.home-hero .hero-primary-cta:hover { border-color: var(--cream); background: var(--cream); color: var(--forest-2); box-shadow: 0 20px 38px rgba(0,0,0,.24); transform: translateY(-4px) scale(1.015); }
+.home-hero .hero-secondary-link { color: var(--sage); opacity: .9; }
+.home-hero .hero-secondary-link:hover { color: var(--ivory); opacity: 1; }
 .hero-art { position: relative; display: grid; min-height: 580px; place-items: center; }
 .hero-image-frame { position: relative; z-index: 1; width: min(100%, 480px); aspect-ratio: .78; overflow: hidden; border-radius: 250px 250px 16px 16px; background: var(--sage); box-shadow: 22px 24px 0 var(--terracotta); }
 .hero-image-frame::after { position: absolute; inset: 16px; content: ''; border: 1px solid rgba(255,255,255,.48); border-radius: 230px 230px 10px 10px; pointer-events: none; }
@@ -157,16 +162,16 @@ img { max-width: 100%; }
 .recipe-card:nth-child(3) h3 { color: var(--ivory); }
 .recipe-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
 .recipe-card:nth-child(3) p { color: rgba(248,246,240,.68); }
-.about-home-grid { display: grid; grid-template-columns: .82fr 1.18fr; align-items: center; gap: clamp(44px, 9vw, 130px); }
-.about-portrait { position: relative; min-height: 600px; padding: 0 28px 28px 0; }
+.about-home-grid { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); align-items: center; gap: clamp(44px, 8vw, 112px); }
+.about-portrait { position: relative; min-height: 640px; max-width: 510px; padding: 0 38px 38px 0; }
 .about-portrait::before { position: absolute; inset: 24px 0 0 24px; content: ''; border: 1px solid var(--terracotta); background: var(--sage); }
-.about-portrait-image { position: absolute; inset: 0 28px 28px 0; z-index: 1; overflow: hidden; border: 10px solid var(--ivory); background: var(--sage); box-shadow: 0 20px 40px rgba(var(--forest-rgb),.14); }
-.about-portrait-image img { object-fit: cover; object-position: center 12%; transition: transform .8s var(--ease); }
+.about-portrait-image { position: absolute; inset: 0 38px 38px 0; z-index: 1; overflow: hidden; border: 12px solid var(--ivory); background: var(--sage); box-shadow: 0 24px 46px rgba(var(--forest-rgb),.16); }
+.about-portrait-image img { object-fit: cover; object-position: center 8%; transition: transform .8s var(--ease); }
 .about-portrait:hover .about-portrait-image img { transform: scale(1.035); }
 .about-portrait-label { position: absolute; bottom: 0; left: 18px; z-index: 2; padding: 12px 16px; color: var(--ivory); background: var(--forest); box-shadow: 9px 9px 0 var(--terracotta); font-family: var(--serif); font-size: 18px; line-height: 1.05; }
 .about-portrait-label em { color: var(--sage); font-family: var(--sans); font-size: 11px; font-style: normal; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .about-portrait-index { position: absolute; top: 8px; right: 0; z-index: 2; color: var(--terracotta); font-size: 10px; font-weight: 900; letter-spacing: .16em; }
-.about-home-copy { max-width: 650px; }
+.about-home-copy { max-width: 650px; padding: 24px 0; }
 .about-home-copy h2 { max-width: 620px; margin: 0 0 24px; font-size: clamp(45px, 5vw, 72px); line-height: .98; }
 .about-home-copy p { max-width: 560px; color: var(--muted); font-size: 18px; line-height: 1.78; }
 .about-home-copy .quote { margin: 30px 0; padding-left: 23px; border-left: 2px solid var(--terracotta); color: var(--forest); font-family: var(--serif); font-size: 26px; font-style: italic; line-height: 1.25; }
@@ -358,8 +363,11 @@ img[data-parallax], .material-device[data-parallax] { will-change: transform; }
   .section { padding: 82px 0; }
   .site-header { position: fixed; }
   .home-hero { min-height: auto; padding: 140px 0 92px; }
-  .hero-copy h1 { font-size: clamp(53px, 15vw, 76px); }
-  .hero-copy > p:not(.eyebrow) { font-size: 16px; }
+  .hero-copy h1 { margin-bottom: 28px; font-size: clamp(53px, 15vw, 76px); line-height: .93; }
+  .hero-copy [data-hero-copy] > p { margin-bottom: 30px; font-size: 16px; line-height: 1.65; }
+  .home-hero .hero-actions { align-items: stretch; gap: 10px; }
+  .home-hero .hero-primary-cta { width: 100%; min-height: 58px; }
+  .home-hero .hero-secondary-link { min-height: 42px; justify-content: center; }
   .hero-art { min-height: 390px; }
   .hero-image-frame { width: 76%; box-shadow: 13px 15px 0 var(--terracotta); }
   .hero-stamp { right: 1%; width: 100px; font-size: 8px; }
