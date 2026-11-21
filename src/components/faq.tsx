@@ -12,5 +12,13 @@ const items = [
 
 export function FAQ() {
   const [active, setActive] = useState<number | null>(null);
-  return <div className="faq-list">{items.map(([question, answer], index) => <div className={`faq-item ${active === index ? 'is-open' : ''}`} key={question}><button type="button" aria-expanded={active === index} onClick={() => setActive(active === index ? null : index)}><span>{question}</span><Plus size={20} /></button><div className="faq-answer"><p>{answer}</p></div></div>)}</div>;
+  return <div className="faq-list">{items.map(([question, answer], index) => {
+    const answerId = `faq-answer-${index}`;
+    const questionId = `faq-question-${index}`;
+    const isOpen = active === index;
+    return <div className={`faq-item ${isOpen ? 'is-open' : ''}`} key={question}>
+      <button id={questionId} type="button" aria-expanded={isOpen} aria-controls={answerId} onClick={() => setActive(isOpen ? null : index)}><span>{question}</span><Plus size={20} aria-hidden="true" /></button>
+      <div id={answerId} className="faq-answer" role="region" aria-labelledby={questionId} aria-hidden={!isOpen}><p>{answer}</p></div>
+    </div>;
+  })}</div>;
 }
