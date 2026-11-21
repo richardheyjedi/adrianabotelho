@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { Search, ArrowUpRight } from 'lucide-react';
 import { Article, articles, categories } from '@/content/articles';
@@ -7,7 +8,7 @@ import { useMemo, useState } from 'react';
 
 function ArticleCard({ article, featured = false }: { article: Article; featured?: boolean }) {
   return <article className={`article-card tone-${article.tone} ${featured ? 'article-card-featured' : ''}`}>
-    <div className="article-visual"><span>Imagem editorial provisória</span><strong>{article.category}</strong></div>
+    <div className="article-visual"><Image src={article.image} alt={article.imageAlt} fill sizes="(max-width: 620px) 100vw, (max-width: 900px) 50vw, 560px" /><div className="article-visual-overlay"><span>{featured ? 'Em destaque' : 'Imagem editorial'}</span><strong>{article.category}</strong></div></div>
     <div className="article-card-body"><div className="article-meta"><span>{article.category}</span><span>{article.readTime}</span></div><h3>{article.title}</h3><p>{article.excerpt}</p><Link href={`/blog/${article.slug}`} className="text-link">Ler artigo <ArrowUpRight size={16} /></Link></div>
   </article>;
 }

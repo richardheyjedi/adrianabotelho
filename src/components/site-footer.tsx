@@ -5,6 +5,7 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="container">
+        <div className="footer-kicker"><span>AB / 2026</span><span>Um cuidado que continua depois da última página.</span></div>
         <div className="footer-top">
           <div>
             <Link href="/" className="footer-wordmark">Adriana Botelho</Link>

@@ -10,6 +10,8 @@ export type Article = {
   excerpt: string;
   readTime: string;
   tone: string;
+  image: string;
+  imageAlt: string;
   sections: ArticleSection[];
 };
 
@@ -21,6 +23,8 @@ export const articles: Article[] = [
     excerpt: 'Ter uma rotina intensa não significa abrir mão de refeições equilibradas. Descubra como o planejamento alimentar pode facilitar suas escolhas, economizar tempo e trazer mais tranquilidade ao seu dia a dia.',
     readTime: '7 min de leitura',
     tone: 'sage',
+    image: '/images/story-table.webp',
+    imageAlt: 'Mesa com uma refeição colorida e ingredientes organizados para a semana',
     sections: [
       { heading: 'Por que organizar a alimentação facilita a rotina', paragraphs: ['Quando a semana começa sem nenhuma referência, cada refeição vira uma decisão nova. Em dias cheios, essa sequência de pequenas escolhas costuma favorecer o improviso, a repetição e a sensação de que comer bem exige uma energia que não está sobrando.', 'Planejar não significa deixar todos os dias idênticos. Significa criar algumas âncoras: saber quais preparos podem ser adiantados, quais ingredientes conversam entre si e quais refeições aceitam uma adaptação. A organização devolve espaço mental para você escolher com mais calma.'] },
       { heading: 'Como planejar um cardápio semanal flexível', paragraphs: ['Comece observando a sua agenda real. Marque os dias em que haverá mais tempo, os horários apertados e as refeições que serão feitas fora de casa. A partir daí, escolha duas ou três bases que possam aparecer de formas diferentes, em vez de montar um cardápio completamente novo a cada dia.', 'Uma base de vegetais assados pode acompanhar arroz, entrar em uma omelete ou formar o recheio de um sanduíche. Um feijão bem armazenado pode compor um prato completo ou virar uma sopa rápida. O segredo é planejar combinações, não uma lista rígida de pratos.'] },
@@ -36,6 +40,8 @@ export const articles: Article[] = [
     excerpt: 'Uma alimentação saudável não precisa ser baseada em regras rígidas ou receitas difíceis. Pequenas escolhas e hábitos sustentáveis podem ajudar você a construir uma rotina alimentar mais leve.',
     readTime: '6 min de leitura',
     tone: 'terracotta',
+    image: '/images/story-kitchen.webp',
+    imageAlt: 'Mãos preparando ervas e vegetais frescos em uma cozinha acolhedora',
     sections: [
       { heading: 'O que é uma alimentação equilibrada', paragraphs: ['Alimentação equilibrada não é um modelo único. Ela reúne variedade, regularidade, prazer, acesso e escolhas compatíveis com a rotina de cada pessoa. Na prática, isso significa observar o conjunto da semana, e não transformar uma refeição isolada em um julgamento sobre você.', 'Ingredientes diferentes oferecem experiências diferentes de sabor, textura e preparo. Aos poucos, ampliar o repertório pode tornar as escolhas mais naturais e diminuir a dependência de soluções que não combinam com a sua realidade.'] },
       { heading: 'Por que evitar extremos alimentares', paragraphs: ['Regras muito rígidas podem até parecer simples no começo, mas costumam deixar pouco espaço para a vida acontecer. Festas, viagens, cansaço e mudanças de agenda fazem parte da rotina. Um plano que não comporta essas situações se torna difícil de sustentar.', 'Buscar equilíbrio é trocar o pensamento de tudo ou nada por perguntas mais úteis: o que está ao meu alcance hoje? Qual é a próxima escolha possível? Como posso deixar essa refeição mais completa sem complicar?'] },
@@ -51,6 +57,8 @@ export const articles: Article[] = [
     excerpt: 'Descubra cinco ideias simples e saborosas que podem fazer parte da sua rotina, ajudando você a economizar tempo na cozinha sem abrir mão de boas refeições.',
     readTime: '8 min de leitura',
     tone: 'forest',
+    image: '/images/recipe-salad.webp',
+    imageAlt: 'Salada mediterrânea de grão-de-bico com legumes frescos e ervas',
     sections: [
       { heading: '1. Bowl de quinoa e vegetais', paragraphs: ['Ingredientes: 1 xícara de quinoa cozida, 1 abobrinha em cubos, 1 cenoura em meias-luas, folhas, azeite, limão e ervas. Rendimento: 2 porções. Tempo: 30 minutos.', 'Asse a abobrinha e a cenoura com azeite e ervas até dourarem. Monte com a quinoa, folhas e um molho de limão. Guarde os componentes separados por até dois dias e finalize na hora. Troque a quinoa por arroz integral ou outro grão que já esteja na sua despensa.'] },
       { heading: '2. Panqueca de banana e aveia', paragraphs: ['Ingredientes: 1 banana madura, 1 ovo, 3 colheres de sopa de aveia e canela. Rendimento: 1 porção. Tempo: 10 minutos.', 'Amasse a banana, misture os demais ingredientes e doure pequenas porções em uma frigideira untada. Sirva com fruta e iogurte, se fizer sentido para você. Para uma versão sem ovo, use uma colher de sopa de linhaça hidratada e ajuste a textura com um pouco de água.'] },
