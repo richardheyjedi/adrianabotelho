@@ -11,13 +11,14 @@ export default function HomePage() {
   return <>
     <HeroMotion>
       <section className="home-hero">
+        <div className="hero-background" aria-hidden="true"><Image src="/images/adriana-hero-duo.webp" alt="" fill priority sizes="100vw" /></div>
         <div className="container hero-grid">
           <div className="hero-copy">
             <p className="eyebrow" data-hero-label>Nutrição prática para a vida real</p>
             <h1><span data-hero-line>Alimentação</span> <em data-hero-line>saudável:</em><br /><span data-hero-line>simples, prática</span><br /><span data-hero-line>e prazerosa,</span><br /><span data-hero-line>como deve ser.</span></h1>
             <div data-hero-copy><p>Onde a ciência da nutrição encontra o afeto da cozinha.</p><div className="hero-actions"><Link className="button button-light hero-primary-cta" data-hero-cta href="/contato#agendamento">Agende uma consultoria <ArrowUpRight size={17} aria-hidden="true" /></Link><Link className="text-link hero-secondary-link" href="/sobre">Conheça meu trabalho <ArrowUpRight size={16} aria-hidden="true" /></Link></div></div>
           </div>
-          <div className="hero-art" data-hero-art><div className="hero-image-frame"><Image className="hero-image" src="/images/adriana-botelho-hero.webp" alt="Adriana Botelho em um retrato elegante em tons creme" fill priority sizes="(max-width: 900px) 70vw, 420px" /></div><div className="hero-stamp" data-hero-stamp><strong>AB</strong><span>ciência<br />sabor<br />propósito</span></div></div>
+          <div className="hero-art" data-hero-art><div className="hero-stamp" data-hero-stamp><strong>AB</strong><span>ciência<br />sabor<br />propósito</span></div></div>
         </div>
         <div className="scroll-cue" data-hero-scroll><ChevronDown size={14} aria-hidden="true" /> Explore a história</div>
       </section>
