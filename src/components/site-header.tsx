@@ -70,6 +70,8 @@ export function SiteHeader() {
     }
   }, { scope: headerRef, dependencies: [open], revertOnUpdate: true });
 
+  if (pathname.startsWith('/escolhi-a-proteina')) return null;
+
   return (
     <header ref={headerRef} className="site-header">
       <div className="container header-inner">
