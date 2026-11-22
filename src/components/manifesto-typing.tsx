@@ -21,23 +21,23 @@ export function ManifestoTyping({ segments }: { segments: ManifestoSegment[] }) 
       if (!chars?.length) return;
 
       if (conditions?.reduceMotion) {
-        gsap.set(chars, { autoAlpha: 1 });
+        gsap.set(chars, { autoAlpha: 1, y: 0, clipPath: 'inset(0 0% 0 0)' });
         if (caret) gsap.set(caret, { autoAlpha: 0 });
         return;
       }
 
-      gsap.set(chars, { autoAlpha: 0, y: 10 });
+      gsap.set(chars, { autoAlpha: 0, y: 10, clipPath: 'inset(0 100% 0 0)' });
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: scope.current,
-          start: 'top 82%',
-          end: 'bottom 34%',
-          scrub: 0.45,
+          start: 'top 88%',
+          end: '+=1050',
+          scrub: 0.35,
           invalidateOnRefresh: true,
         },
       });
 
-      timeline.to(chars, { autoAlpha: 1, y: 0, duration: 1, stagger: 0.012, ease: 'none' });
+      timeline.to(chars, { autoAlpha: 1, y: 0, clipPath: 'inset(0 0% 0 0)', duration: 0.9, stagger: 0.018, ease: 'none' });
       if (caret) timeline.to(caret, { autoAlpha: 0, duration: 0.1 }, '>-0.08');
     });
 
