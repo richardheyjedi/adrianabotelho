@@ -11,6 +11,7 @@ export default function HomePage() {
   return <>
     <HeroMotion>
       <section className="home-hero">
+        <div className="hero-background-motion" aria-hidden="true"><div className="hero-background-surface" data-hero-bg-surface /><span className="hero-bg-orbit hero-bg-orbit-one" data-hero-bg-orbit /><span className="hero-bg-orbit hero-bg-orbit-two" data-hero-bg-orbit /></div>
         <div className="container hero-grid">
           <div className="hero-copy">
             <p className="eyebrow" data-hero-label>Nutrição prática para a vida real</p>

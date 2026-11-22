@@ -80,6 +80,11 @@ main:focus { outline: none; }
 .home-hero { position: relative; display: flex; min-height: min(880px, 100svh); align-items: center; overflow: hidden; padding: 160px 0 100px; background: var(--forest-2); color: var(--ivory); }
 .home-hero::before { position: absolute; top: -220px; right: -160px; width: 600px; height: 600px; content: ''; border: 1px solid rgba(169,183,165,.25); border-radius: 50%; box-shadow: 0 0 0 35px rgba(169,183,165,.05), 0 0 0 80px rgba(169,183,165,.03); }
 .home-hero::after { position: absolute; bottom: -300px; left: -160px; width: 520px; height: 520px; content: ''; border: 1px solid rgba(185,130,105,.28); border-radius: 50%; }
+.hero-background-motion { position: absolute; inset: -9%; z-index: 0; overflow: hidden; pointer-events: none; }
+.hero-background-surface { position: absolute; inset: 0; background: radial-gradient(circle at 74% 24%, rgba(169,183,165,.22), transparent 25%), radial-gradient(circle at 22% 80%, rgba(185,130,105,.16), transparent 24%), linear-gradient(125deg, rgba(24,61,43,.18), rgba(123,129,115,.1) 48%, rgba(24,61,43,.26)); opacity: .95; transform: scale(1.08); will-change: transform; }
+.hero-bg-orbit { position: absolute; display: block; border: 1px solid rgba(169,183,165,.24); border-radius: 50%; will-change: transform; }
+.hero-bg-orbit-one { top: -18%; right: -8%; width: min(62vw, 820px); aspect-ratio: 1; box-shadow: 0 0 0 30px rgba(169,183,165,.035), 0 0 0 76px rgba(169,183,165,.025); }
+.hero-bg-orbit-two { bottom: -28%; left: -10%; width: min(48vw, 620px); aspect-ratio: 1; border-color: rgba(185,130,105,.22); }
 .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, .85fr); align-items: center; gap: clamp(48px, 8vw, 118px); }
 .hero-copy h1 { max-width: 780px; margin: 0 0 34px; color: var(--ivory); font-family: var(--serif); font-size: clamp(62px, 8.8vw, 124px); font-weight: 400; line-height: .89; letter-spacing: -.07em; }
 .hero-copy h1 em { color: var(--sage); font-style: italic; }
@@ -217,11 +222,10 @@ main:focus { outline: none; }
 .about-hero-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(520px, 1.18fr); align-items: center; gap: clamp(46px, 7vw, 100px); min-height: 620px; }
 .about-hero-copy { max-width: 620px; }
 .about-hero-copy .page-hero-copy { max-width: 450px; margin: 32px 0 30px; line-height: 1.8; }
-.about-hero-art { position: relative; display: flex; align-items: center; justify-content: center; min-height: 600px; }
+.about-hero-art { position: relative; display: flex; align-items: center; justify-content: center; min-height: 600px; transform: translateX(-5%); }
 .about-hero-duo-frame { position: relative; width: min(100%, 660px); aspect-ratio: 1.36; overflow: hidden; background: var(--sage); box-shadow: 20px 22px 0 var(--terracotta); }
 .about-hero-duo-frame img { object-fit: cover; object-position: 73% center; }
 .about-hero-duo-frame::after { position: absolute; inset: 16px; content: ''; border: 1px solid rgba(248,246,240,.62); pointer-events: none; }
-.about-hero-note { position: absolute; top: 7%; right: -1%; color: var(--terracotta); font-size: 10px; font-weight: 900; letter-spacing: .14em; line-height: 1.45; text-align: right; text-transform: uppercase; }
 .story-block { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: clamp(40px, 8vw, 120px); }
 .story-block.reverse { grid-template-columns: 1.2fr .8fr; }
 .story-block.reverse .story-text { order: -1; }
@@ -377,7 +381,7 @@ main:focus { outline: none; }
   .hero-art { order: 2; min-height: 470px; }
   .intro-copy, .story-text { order: 1; }
   .editorial-photo, .story-visual { min-height: 440px; order: 2; }
-  .about-hero-art { min-height: 520px; }
+  .about-hero-art { min-height: 520px; transform: none; }
   .brand-origin-visual { min-height: 480px; }
   .home-article-slide { grid-template-columns: 1fr; }
   .home-article-image { min-height: 360px; }
@@ -401,15 +405,10 @@ main:focus { outline: none; }
   .home-hero .hero-primary-cta { width: 100%; min-height: 58px; }
   .home-hero .hero-secondary-link { min-height: 42px; justify-content: center; }
   .hero-art { min-height: 390px; }
-  .about-hero-background img { object-position: 68% center; opacity: .55; }
-  .about-hero-background::after { background: linear-gradient(90deg, rgba(248,246,240,.99) 0%, rgba(248,246,240,.9) 56%, rgba(248,246,240,.3) 100%), linear-gradient(0deg, rgba(248,246,240,.35), transparent 45%); }
   .hero-image-frame { width: 76%; box-shadow: 13px 15px 0 var(--terracotta); }
   .hero-stamp { right: 1%; width: 100px; font-size: 8px; }
   .about-hero { padding-top: 145px; padding-bottom: 88px; }
-  .about-hero-art { min-height: 420px; }
-  .about-hero-main { left: 2%; width: 62%; height: 86%; box-shadow: 11px 12px 0 var(--forest); }
-  .about-hero-detail { width: 53%; height: 56%; border-width: 7px; box-shadow: 11px 12px 0 var(--terracotta); }
-  .about-hero-note { top: 5%; right: 0; font-size: 8px; }
+  .about-hero-art { min-height: 420px; transform: none; }
   .blog-hero { min-height: 560px; padding: 145px 0 100px; }
   .blog-hero::before { width: 118vw; }
   .blog-hero::after { right: 16px; left: 16px; bottom: 38px; }
