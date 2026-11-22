@@ -8,6 +8,12 @@ const nextConfig = {
     return [
       { source: '/links', destination: '/links/index.html' },
       { source: '/links/', destination: '/links/index.html' },
+      { source: '/mapa', destination: '/mapa/index.html' },
+      { source: '/mapa/', destination: '/mapa/index.html' },
+      { source: '/arvore', destination: '/arvore/index.html' },
+      { source: '/arvore/', destination: '/arvore/index.html' },
+      { source: '/comida-planejada', destination: '/comida-planejada/index.html' },
+      { source: '/comida-planejada/', destination: '/comida-planejada/index.html' },
     ];
   },
 };
