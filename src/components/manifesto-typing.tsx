@@ -1,13 +1,13 @@
 'use client';
 
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-type ManifestoSegment = { text: string; emphasis?: boolean };
+type ManifestoSegment = { text: string; emphasis?: boolean; breakAfter?: boolean };
 
 export function ManifestoTyping({ segments }: { segments: ManifestoSegment[] }) {
   const scope = useRef<HTMLDivElement>(null);
@@ -26,17 +26,18 @@ export function ManifestoTyping({ segments }: { segments: ManifestoSegment[] }) 
         return;
       }
 
-      gsap.set(chars, { autoAlpha: 0.16 });
+      gsap.set(chars, { autoAlpha: 0, y: 10 });
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: scope.current,
-          start: 'top 78%',
-          end: 'bottom 42%',
-          scrub: 1,
+          start: 'top 82%',
+          end: 'bottom 34%',
+          scrub: 0.45,
+          invalidateOnRefresh: true,
         },
       });
 
-      timeline.to(chars, { autoAlpha: 1, duration: 1, stagger: 0.014, ease: 'none' });
+      timeline.to(chars, { autoAlpha: 1, y: 0, duration: 1, stagger: 0.012, ease: 'none' });
       if (caret) timeline.to(caret, { autoAlpha: 0, duration: 0.1 }, '>-0.08');
     });
 
@@ -48,11 +49,14 @@ export function ManifestoTyping({ segments }: { segments: ManifestoSegment[] }) 
       <p className="manifesto" aria-label={accessibleText}>
         {segments.map((segment, segmentIndex) => {
           const Tag = segment.emphasis ? 'em' : 'span';
-          return <Tag key={`${segment.text}-${segmentIndex}`} className={segment.emphasis ? 'manifesto-emphasis' : undefined}>
-            {Array.from(segment.text).map((character, characterIndex) => (
-              <span key={`${segmentIndex}-${characterIndex}`} data-manifesto-char aria-hidden="true">{character === ' ' ? '\u00a0' : character}</span>
-            ))}
-          </Tag>;
+          return <Fragment key={`${segment.text}-${segmentIndex}`}>
+            <Tag className={segment.emphasis ? 'manifesto-emphasis' : undefined}>
+              {Array.from(segment.text).map((character, characterIndex) => (
+                <span key={`${segmentIndex}-${characterIndex}`} data-manifesto-char aria-hidden="true">{character === ' ' ? '\u00a0' : character}</span>
+              ))}
+            </Tag>
+            {segment.breakAfter ? <br aria-hidden="true" /> : null}
+          </Fragment>;
         })}
         <span className="manifesto-caret" data-manifesto-caret aria-hidden="true" />
       </p>

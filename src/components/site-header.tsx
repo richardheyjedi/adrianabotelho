@@ -74,8 +74,7 @@ export function SiteHeader() {
     <header ref={headerRef} className="site-header">
       <div className="container header-inner">
         <Link href="/" className="wordmark" onClick={() => setOpen(false)} aria-label="Adriana Botelho, início">
-          <span className="wordmark-monogram">AB</span>
-          <span>Adriana Botelho</span>
+          ADRIANA BOTELHO
         </Link>
 
         <nav className="desktop-nav" aria-label="Navegação principal">
