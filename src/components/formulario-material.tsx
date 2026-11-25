@@ -69,7 +69,7 @@ export function FormularioMaterial({ rotulo, titulo, formulario }: Props) {
           <button type="button" className="janela-fechar" onClick={fechar} aria-label="Fechar"><X size={20} aria-hidden="true" /></button>
           <p className="etiqueta">Material gratuito</p>
           <h2 id={`${id}-titulo`}>{titulo}</h2>
-          <p className="janela-texto">Deixe seu nome e e-mail para baixar. O link também chega na sua caixa de entrada.</p>
+          <p className="janela-texto">Deixe seu nome e e-mail para baixar.</p>
           <form className="formulario" method="POST" action={formulario.acao} onSubmit={aoEnviar} noValidate>
             {formulario.campos && Object.entries(formulario.campos).map(([nome, valor]) => <input key={nome} type="hidden" name={nome} value={valor} />)}
             <div className="campo">
