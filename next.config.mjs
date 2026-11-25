@@ -16,6 +16,21 @@ const nextConfig = {
       { source: '/comida-planejada/', destination: '/comida-planejada/index.html' },
     ];
   },
+  async redirects() {
+    return [
+      // O blog saiu do site: os endereços antigos levam para a página inicial.
+      { source: '/blog', destination: '/', permanent: true },
+      { source: '/blog/:caminho*', destination: '/', permanent: true },
+      // Os PDFs só são entregues depois do formulário: os endereços antigos levam até ele.
+      { source: '/downloads/:arquivo*', destination: '/#materiais-gratuitos', permanent: true },
+      { source: '/links/ebook-bases-alimentares.pdf', destination: '/#materiais-gratuitos', permanent: true },
+    ];
+  },
+  async headers() {
+    return [
+      { source: '/materiais/:arquivo*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] },
+    ];
+  },
 };
 
 export default nextConfig;

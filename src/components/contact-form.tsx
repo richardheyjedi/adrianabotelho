@@ -4,30 +4,69 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { EMAIL_CONTATO } from '@/content/site';
+
+const ASSUNTOS = ['Dúvidas sobre os materiais', 'Parcerias e imprensa', 'Outro assunto'] as const;
 
 const schema = z.object({
-  name: z.string().min(2, 'Digite seu nome completo.'),
-  email: z.string().email('Digite um email válido.'),
-  whatsapp: z.string().min(8, 'Digite um WhatsApp válido.'),
-  subject: z.string().min(2, 'Escolha um assunto.'),
-  message: z.string().min(10, 'Escreva uma mensagem com pelo menos 10 caracteres.'),
-  consent: z.literal(true, { errorMap: () => ({ message: 'O consentimento é necessário.' }) }),
+  name: z.string().trim().min(2, 'Digite seu nome completo.'),
+  email: z.string().trim().email('Digite um e-mail válido.'),
+  subject: z.enum(ASSUNTOS, { errorMap: () => ({ message: 'Escolha um assunto.' }) }),
+  message: z.string().trim().min(10, 'Escreva uma mensagem com pelo menos 10 caracteres.'),
+  consent: z.literal(true, { errorMap: () => ({ message: 'Marque a caixa para enviar a mensagem.' }) }),
+  _honey: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
 
-export function ContactForm() {
-  const [message, setMessage] = useState('');
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(schema) });
-  const onSubmit = async () => setMessage('Prévia: os campos foram validados. O envio ainda não está ativo; conecte um canal oficial para receber mensagens.');
-  const error = (key: keyof FormValues) => errors[key]?.message;
-  const fieldError = (key: keyof FormValues, id: string) => error(key) ? <span id={id} className="field-error" role="alert">{error(key)}</span> : null;
+// As mensagens são entregues no e-mail de contato pelo serviço FormSubmit.
+const ENDERECO_ENVIO = `https://formsubmit.co/ajax/${EMAIL_CONTATO}`;
 
-  return <form className="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-    <div className="form-two"><div className="field"><label htmlFor="contact-name">Nome completo</label><input id="contact-name" autoComplete="name" aria-invalid={Boolean(error('name'))} aria-describedby={error('name') ? 'contact-name-error' : undefined} {...register('name')} />{fieldError('name', 'contact-name-error')}</div><div className="field"><label htmlFor="contact-email">Email</label><input id="contact-email" type="email" autoComplete="email" spellCheck={false} aria-invalid={Boolean(error('email'))} aria-describedby={error('email') ? 'contact-email-error' : undefined} {...register('email')} />{fieldError('email', 'contact-email-error')}</div></div>
-    <div className="form-two"><div className="field"><label htmlFor="contact-whatsapp">WhatsApp</label><input id="contact-whatsapp" type="tel" inputMode="tel" autoComplete="tel" placeholder="(00) 00000-0000" aria-invalid={Boolean(error('whatsapp'))} aria-describedby={error('whatsapp') ? 'contact-whatsapp-error' : undefined} {...register('whatsapp')} />{fieldError('whatsapp', 'contact-whatsapp-error')}</div><div className="field"><label htmlFor="contact-subject">Assunto</label><select id="contact-subject" autoComplete="off" defaultValue="" aria-invalid={Boolean(error('subject'))} aria-describedby={error('subject') ? 'contact-subject-error' : undefined} {...register('subject')}><option value="" disabled>Selecione</option><option value="consultoria">Consultoria nutricional</option><option value="parcerias">Parcerias</option><option value="outro">Outro assunto</option></select>{fieldError('subject', 'contact-subject-error')}</div></div>
-    <div className="field"><label htmlFor="contact-message">Mensagem</label><textarea id="contact-message" rows={6} autoComplete="off" aria-invalid={Boolean(error('message'))} aria-describedby={error('message') ? 'contact-message-error' : undefined} {...register('message')} />{fieldError('message', 'contact-message-error')}</div>
-    <label className="consent"><input type="checkbox" aria-invalid={Boolean(error('consent'))} aria-describedby={error('consent') ? 'contact-consent-error' : undefined} {...register('consent')} /><span>Li e concordo com a política de privacidade.</span></label>{fieldError('consent', 'contact-consent-error')}
-    <button className="button" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Validando…' : 'Enviar mensagem'}</button>{message && <p className="form-status" role="status" aria-live="polite">{message}</p>}
-  </form>;
+export function ContactForm() {
+  const [status, setStatus] = useState<{ tipo: 'ok' | 'erro'; texto: string } | null>(null);
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(schema) });
+
+  const onSubmit = async (dados: FormValues) => {
+    setStatus(null);
+    if (dados._honey) return;
+    try {
+      const resposta = await fetch(ENDERECO_ENVIO, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          Nome: dados.name,
+          'E-mail': dados.email,
+          Assunto: dados.subject,
+          Mensagem: dados.message,
+          _replyto: dados.email,
+          _subject: `Site: ${dados.subject}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+      const resultado = await resposta.json().catch(() => ({}));
+      if (!resposta.ok || String(resultado.success) !== 'true') throw new Error(resultado.message || 'falha');
+      reset();
+      setStatus({ tipo: 'ok', texto: 'Mensagem enviada. Eu respondo pelo seu e-mail assim que possível.' });
+    } catch {
+      setStatus({ tipo: 'erro', texto: `Não foi possível enviar agora. Tente de novo em alguns minutos ou escreva para ${EMAIL_CONTATO}.` });
+    }
+  };
+
+  const erro = (campo: keyof FormValues) => errors[campo]?.message;
+  const mensagemErro = (campo: keyof FormValues) => erro(campo) ? <span id={`contato-${campo}-erro`} className="campo-erro" role="alert">{erro(campo)}</span> : null;
+  const descricao = (campo: keyof FormValues) => erro(campo) ? `contato-${campo}-erro` : undefined;
+
+  return (
+    <form className="formulario formulario-contato" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <input type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" {...register('_honey')} />
+      <div className="campo"><label htmlFor="contato-nome">Nome completo</label><input id="contato-nome" autoComplete="name" aria-invalid={Boolean(erro('name'))} aria-describedby={descricao('name')} {...register('name')} />{mensagemErro('name')}</div>
+      <div className="campo"><label htmlFor="contato-email">E-mail</label><input id="contato-email" type="email" autoComplete="email" spellCheck={false} aria-invalid={Boolean(erro('email'))} aria-describedby={descricao('email')} {...register('email')} />{mensagemErro('email')}</div>
+      <div className="campo"><label htmlFor="contato-assunto">Assunto</label><select id="contato-assunto" defaultValue="" aria-invalid={Boolean(erro('subject'))} aria-describedby={descricao('subject')} {...register('subject')}><option value="" disabled>Selecione</option>{ASSUNTOS.map((assunto) => <option key={assunto} value={assunto}>{assunto}</option>)}</select>{mensagemErro('subject')}</div>
+      <div className="campo"><label htmlFor="contato-mensagem">Mensagem</label><textarea id="contato-mensagem" rows={6} aria-invalid={Boolean(erro('message'))} aria-describedby={descricao('message')} {...register('message')} />{mensagemErro('message')}</div>
+      <label className="consentimento"><input type="checkbox" aria-invalid={Boolean(erro('consent'))} aria-describedby={descricao('consent')} {...register('consent')} /><span>Li e concordo com a <a href="/privacidade" target="_blank">política de privacidade</a>.</span></label>{mensagemErro('consent')}
+      <button className="botao botao-marrom" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Enviando…' : 'Enviar mensagem'}</button>
+      {status && <p className={`formulario-aviso ${status.tipo === 'erro' ? 'aviso-erro' : ''}`} role="status" aria-live="polite">{status.texto}</p>}
+    </form>
+  );
 }

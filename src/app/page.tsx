@@ -1,37 +1,111 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, ChevronDown } from 'lucide-react';
-import { HomeArticlesCarousel } from '@/components/home-articles-carousel';
-import { HeroMotion } from '@/components/hero-motion';
-import { NewsletterForm } from '@/components/newsletter-form';
+import { ArrowDown, ArrowUpRight, Check, Youtube } from 'lucide-react';
+import { FormularioMaterial } from '@/components/formulario-material';
+import { CardComidaPlanejada, CardEscolhiAProteina } from '@/components/produtos';
 import { Reveal } from '@/components/reveal';
-import { articles } from '@/content/articles';
+import { IlustracaoMarca, Retrato } from '@/components/retrato';
+import { CRN, FORMULARIOS, SOCIAL } from '@/content/site';
+
+function ListaChecada({ itens }: { itens: string[] }) {
+  return <ul className="lista-checada">{itens.map((item) => <li key={item}><Check size={16} aria-hidden="true" />{item}</li>)}</ul>;
+}
 
 export default function HomePage() {
   return <>
-    <HeroMotion>
-      <section className="home-hero">
-        <div className="hero-background-motion" aria-hidden="true"><div className="hero-background-surface" data-hero-bg-surface /><span className="hero-bg-orbit hero-bg-orbit-one" data-hero-bg-orbit /><span className="hero-bg-orbit hero-bg-orbit-two" data-hero-bg-orbit /></div>
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <p className="eyebrow" data-hero-label>Nutrição prática para a vida real</p>
-            <h1><span data-hero-line>Alimentação</span> <em data-hero-line>saudável:</em><br /><span data-hero-line>simples, prática</span><br /><span data-hero-line>e prazerosa,</span><br /><span data-hero-line>como deve ser.</span></h1>
-            <div data-hero-copy><p>Onde a ciência da nutrição encontra o afeto da cozinha.</p><div className="hero-actions"><Link className="button button-light hero-primary-cta" data-hero-cta href="/contato#agendamento">Agende uma consultoria <ArrowUpRight size={17} aria-hidden="true" /></Link><Link className="text-link hero-secondary-link" href="/sobre">Conheça meu trabalho <ArrowUpRight size={16} aria-hidden="true" /></Link></div></div>
+    <section className="secao secao-topo">
+      <div className="container grade-duas grade-topo">
+        <div className="texto-topo">
+          <p className="etiqueta">Nutrição prática para a vida real</p>
+          <h1 className="titulo-grande">Alimentação saudável: simples, prática e prazerosa, como deve ser.</h1>
+          <p className="texto-destaque texto-destaque-colado">Ensino a planejar e organizar a comida da semana para a alimentação saudável caber na rotina da família.</p>
+          <p className="assinatura">Nutricionista · {CRN} · Mestre e doutora pela UNICAMP</p>
+          <div className="acoes">
+            <Link className="botao botao-marrom" href="/escolhi-a-proteina">Conheça o Escolhi a proteína <ArrowUpRight size={17} aria-hidden="true" /></Link>
+            <Link className="botao botao-contorno" href="#materiais-gratuitos">Materiais gratuitos <ArrowDown size={17} aria-hidden="true" /></Link>
           </div>
-          <div className="hero-art" data-hero-art><div className="hero-image-frame"><Image className="hero-image" src="/images/adriana-botelho-hero.webp" alt="Adriana Botelho em um retrato elegante em tons creme" fill priority sizes="(max-width: 900px) 70vw, 420px" /></div><div className="hero-stamp" data-hero-stamp><strong>AB</strong><span>ciência<br />sabor<br />propósito</span></div></div>
         </div>
-        <div className="scroll-cue" data-hero-scroll><ChevronDown size={14} aria-hidden="true" /> Explore a história</div>
-      </section>
-    </HeroMotion>
+        <Retrato className="retrato-topo" src="/fotos/inicio-topo.webp" alt="Adriana Botelho sentada numa poltrona, de conjunto claro, com as mãos apoiadas no joelho e sorrindo" largura={1600} altura={2399} prioridade tamanhos="(max-width: 900px) 80vw, 430px" />
+      </div>
+    </section>
 
-    <Reveal><section className="section section-ivory"><div className="container intro-grid"><div className="intro-copy"><p className="eyebrow">A rotina real</p><h2 className="display">Conciliar carreira, família e autocuidado pode ser desafiador — mas não precisa ser complicado.</h2><div className="intro-copy-body"><p className="section-intro">Se você vive uma rotina intensa e desempenha vários papéis ao longo do dia, sabe o quanto a alimentação saudável é essencial — e, por isso, precisa de soluções práticas, que funcionem no seu dia a dia.</p><p className="section-intro">Aqui, você encontra estratégias para otimizar seu tempo na cozinha sem abrir mão do sabor, do prazer à mesa e do bem-estar da sua família.</p><Link className="button" href="/contato#agendamento">Agende uma consultoria <ArrowUpRight size={17} aria-hidden="true" /></Link></div></div><div className="editorial-photo" aria-label="Ingredientes frescos organizados em uma cozinha acolhedora"><Image src="/images/editorial-ingredients.webp" alt="Ingredientes frescos, ervas e cerâmica em uma cozinha acolhedora" fill sizes="(max-width: 900px) 100vw, 50vw" data-parallax="soft" /><span className="editorial-photo-caption">comida de verdade, todos os dias</span><span className="editorial-photo-index">02 / 07</span></div></div></section></Reveal>
+    <Reveal><section className="secao secao-areia">
+      <div className="container grade-duas grade-foto-esquerda">
+        <Retrato src="/fotos/inicio-rotina.webp" alt="Adriana Botelho de camiseta branca misturando uma salada de folhas numa tigela de vidro, sorrindo" largura={1600} altura={2400} ilustracao="gengibre" canto="inferior-direito" />
+        <div className="texto-corrido">
+          <p className="etiqueta">A rotina real</p>
+          <h2 className="titulo-secao">Conciliar carreira, família e autocuidado é um desafio constante.</h2>
+          <p>Você equilibra múltiplos papéis, tem uma rotina intensa e sabe que a alimentação saudável é essencial, mas precisa de soluções práticas, que funcionem no seu dia a dia.</p>
+          <p>Aqui, você encontra estratégias para otimizar seu tempo na cozinha sem abrir mão do sabor, do prazer à mesa e do bem-estar da sua família.</p>
+        </div>
+      </div>
+    </section></Reveal>
 
-    <Reveal><section className="section section-forest"><div className="container material-grid"><div className="material-copy"><p className="eyebrow">Material gratuito</p><h2 className="display">Menos tempo na cozinha, mais tempo para o que realmente importa.</h2><p>Uma alimentação nutritiva começa com um bom planejamento. Baixe gratuitamente minha Lista de Compras Inteligente e simplifique sua rotina alimentar.</p><ul className="benefit-list"><li>Otimize seu tempo na cozinha.</li><li>Tenha sempre os ingredientes certos à mão.</li><li>Reduza desperdícios e organize sua rotina alimentar.</li></ul><div className="hero-actions"><span className="button button-light" aria-disabled="true">Material em preparação</span><a className="text-link" href="/downloads/ebook-bases-alimentares.pdf" style={{ color: 'var(--sage)' }}>Baixar e-book Bases Alimentares <ArrowUpRight size={16} aria-hidden="true" /></a></div></div><div className="material-mockup"><div className="material-device" data-parallax="soft"><Image src="/images/material-app-iphone.webp" alt="Mockup de um smartphone branco com um aplicativo de planejamento alimentar" fill sizes="(max-width: 900px) 70vw, 390px" /></div><span className="material-note">Planejamento alimentar · experiência mobile</span></div></div></section></Reveal>
+    <Reveal><section className="secao">
+      <div className="container grade-produtos">
+        <Retrato className="retrato-produtos" src="/fotos/inicio-produtos.webp" alt="Adriana Botelho de dólmã branca de chef, com as mãos apoiadas no encosto de uma cadeira, sorrindo" largura={1600} altura={2400} tamanhos="(max-width: 900px) 80vw, 360px" />
+        <div>
+          <p className="etiqueta">Materiais para a sua cozinha</p>
+          <h2 className="titulo-secao">Comece pelo que já está na sua geladeira.</h2>
+          <div className="produtos-lista">
+            <CardEscolhiAProteina />
+            <CardComidaPlanejada />
+          </div>
+        </div>
+      </div>
+    </section></Reveal>
 
-    <Reveal><section className="section section-cream"><div className="container"><div className="section-heading-row"><div><p className="eyebrow">Cozinha possível</p><h2 className="display">Receitas práticas, nutritivas e cheias de sabor.</h2></div><div><p>Estratégias para otimizar seu tempo na cozinha sem abrir mão do sabor, do prazer à mesa e do bem-estar da sua família.</p><Link className="text-link" href="/blog">Acessar todos os artigos <ArrowUpRight size={16} aria-hidden="true" /></Link></div></div><HomeArticlesCarousel articles={articles} /></div></section></Reveal>
+    <Reveal><section className="secao secao-areia secao-com-ilustracao" id="materiais-gratuitos">
+      <IlustracaoMarca nome="frutas" className="ilustracao-secao canto-superior-direito" />
+      <div className="container">
+        <div className="materiais-cabecalho">
+          <h2 className="etiqueta etiqueta-titulo">Materiais gratuitos</h2>
+          <Retrato className="retrato-largo" src="/fotos/inicio-materiais.webp" alt="Vista de cima das mãos de Adriana misturando uma salada de folhas verdes e roxas com colheres de bambu" largura={1600} altura={1067} tamanhos="(max-width: 900px) 92vw, 620px" />
+        </div>
+        <div className="materiais-grade">
+          <article className="material-bloco">
+            <Image className="material-capa" src="/fotos/capa-lista-de-compras.webp" alt="As três folhas da Lista de Compras Inteligente: Hortifruti, Produtos Naturais e Itens Comuns" width={936} height={817} sizes="(max-width: 900px) 70vw, 300px" />
+            <p className="material-nome">Lista de Compras Inteligente</p>
+            <h3>Menos tempo na cozinha, mais tempo para o que realmente importa.</h3>
+            <p>Uma alimentação nutritiva começa com um bom planejamento. Baixe gratuitamente minha Lista de Compras Inteligente e simplifique sua rotina alimentar.</p>
+            <ListaChecada itens={['Otimize seu tempo na cozinha.', 'Tenha sempre os ingredientes certos à mão.', 'Reduza desperdícios e organize sua rotina alimentar.']} />
+            <FormularioMaterial rotulo="Baixar agora" titulo="Lista de Compras Inteligente" formulario={FORMULARIOS.listaDeCompras} />
+          </article>
+          <article className="material-bloco">
+            <Image className="material-capa material-capa-ebook" src="/fotos/capa-bases-alimentares.webp" alt="Capa do e-book Bases Alimentares" width={200} height={283} sizes="186px" />
+            <p className="material-nome">E-book Bases Alimentares</p>
+            <h3>Cozinhe as bases uma vez e decida, a cada dia, o prato que sai delas.</h3>
+            <p>Carne moída, frango desfiado, grão-de-bico e abóbora. O e-book Bases Alimentares ensina a preparar cada base do jeito que rende a semana inteira e a transformá-la em pratos diferentes, trocando o molho, o formato e o contraste. Quem escolhe o que vai à mesa é você.</p>
+            <ListaChecada itens={['Como deixar a base neutra, com boa textura e fácil de porcionar, para servir a vários pratos.', 'As 3 trocas que fazem a mesma base virar refeições diferentes ao longo da semana.', 'Receitas e duas semanas de exemplo para você adaptar ao gosto da sua família.']} />
+            <FormularioMaterial rotulo="Quero o e-book grátis" titulo="E-book Bases Alimentares" formulario={FORMULARIOS.basesAlimentares} />
+          </article>
+        </div>
+      </div>
+    </section></Reveal>
 
-    <Reveal><section className="section section-ivory"><div className="container about-home-grid"><div className="about-portrait" aria-label="Retrato profissional de Adriana Botelho"><div className="about-portrait-image"><Image src="/images/adriana-botelho-expert.jpeg" alt="Retrato profissional de Adriana Botelho em seu jaleco" fill sizes="(max-width: 900px) 100vw, 40vw" data-parallax="soft" /></div><span className="about-portrait-label">Adriana Botelho<br /><em>nutrição com afeto</em></span><span className="about-portrait-index">03 / 07</span></div><div className="about-home-copy"><p className="eyebrow">Sobre Adriana</p><h2 className="display">Muito prazer, eu sou a Adriana.</h2><p>Desde pequena, aprendi que cozinhar é uma forma de amar. Com o tempo, a paixão pela cozinha se uniu à ciência da nutrição, e foi assim que encontrei minha missão: ajudar mulheres a transformar a rotina alimentar em algo prático, prazeroso e leve.</p><p className="quote">“Se o plano alimentar não vira comida de verdade no prato, ele não se sustenta.”</p><Link className="button" href="/sobre">Conheça minha história <ArrowUpRight size={17} aria-hidden="true" /></Link></div></div></section></Reveal>
+    <Reveal><section className="secao">
+      <div className="container grade-duas grade-foto-direita">
+        <div className="texto-corrido">
+          <p className="etiqueta">Cozinha Con(s)ciência</p>
+          <h2 className="titulo-secao">Receitas e explicações em vídeo, no meu canal do YouTube.</h2>
+          <p>Preparos práticos, com o porquê de cada escolha no prato.</p>
+          <div className="acoes"><a className="botao botao-contorno" href={SOCIAL.youtube} target="_blank" rel="noreferrer"><Youtube size={18} aria-hidden="true" /> Assistir no YouTube</a></div>
+        </div>
+        <Retrato src="/fotos/inicio-youtube.webp" alt="Adriana Botelho preparando uma salada numa tigela de vidro, olhando para a câmera" largura={1600} altura={2400} />
+      </div>
+    </section></Reveal>
 
-    <Reveal><section className="section section-forest" id="newsletter"><div className="container newsletter-grid"><div><p className="eyebrow">Para a sua caixa de entrada</p><h2 className="display">Assine nossa newsletter.</h2><p>Descubra estratégias simples e práticas para planejar suas refeições, economizar tempo e manter uma alimentação saudável no meio da correria.</p></div><NewsletterForm /></div></section></Reveal>
+    <Reveal><section className="secao secao-areia">
+      <div className="container grade-duas grade-foto-esquerda">
+        <Retrato src="/fotos/inicio-sobre.webp" alt="Adriana Botelho de avental bege, de braços cruzados, sorrindo diante de um fundo caramelo" largura={1600} altura={2400} ilustracao="abacate" canto="superior-direito" />
+        <div className="texto-corrido">
+          <p className="etiqueta">Sobre Adriana</p>
+          <h2 className="titulo-secao">Muito prazer, eu sou a Adriana.</h2>
+          <p>Desde pequena, aprendi que cozinhar é uma forma de amar. Com o tempo, a paixão pela cozinha se uniu à ciência da nutrição, e foi assim que encontrei minha missão: ajudar mulheres a transformar a rotina alimentar em algo prático, prazeroso e leve.</p>
+          <blockquote className="citacao">“Se o plano alimentar não vira comida de verdade no prato, ele não se sustenta.”</blockquote>
+          <div className="acoes"><Link className="botao botao-contorno" href="/sobre">Conheça minha história <ArrowUpRight size={17} aria-hidden="true" /></Link></div>
+        </div>
+      </div>
+    </section></Reveal>
   </>;
 }
