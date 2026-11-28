@@ -1,3 +1,4 @@
+import { BotaoPreferenciasCookies } from '@/components/aviso-cookies';
 import { EMAIL_CONTATO } from '@/content/site';
 
 export const metadata = { title: 'Política de privacidade', description: 'Como o site de Adriana Botelho coleta, usa e protege os seus dados.' };
@@ -18,17 +19,20 @@ export default function PrivacyPage() {
         <h2>Quais dados são coletados</h2>
         <ul>
           <li><strong>Materiais gratuitos:</strong> nome e e-mail, quando você pede a Lista de Compras Inteligente ou o e-book Bases Alimentares.</li>
+          <li><strong>Lista de espera do curso Comida Planejada:</strong> nome, e-mail e WhatsApp, quando você entra na lista para saber da abertura das inscrições.</li>
           <li><strong>Formulário de contato:</strong> nome, e-mail, assunto e a mensagem que você escrever.</li>
           <li><strong>Dados técnicos de acesso:</strong> a empresa que hospeda o site registra automaticamente informações como endereço de IP, tipo de navegador e páginas acessadas, para manter o site funcionando e seguro.</li>
+          <li><strong>Cookies de medição:</strong> só se você aceitar no aviso de cookies, o Meta Pixel registra as páginas visitadas e ações como abrir a página de vendas, iniciar uma compra ou pedir um material gratuito. Os detalhes estão na seção &quot;Cookies e o aviso de cookies&quot;, mais abaixo.</li>
         </ul>
-        <p>O site não usa ferramentas de anúncio nem de análise de comportamento.</p>
 
         <h2>Para que os dados são usados</h2>
         <ul>
           <li>Enviar o material que você pediu e, se você concordou, conteúdos por e-mail sobre alimentação, receitas e os meus materiais e cursos.</li>
           <li>Responder à mensagem que você enviou pelo formulário de contato.</li>
+          <li>Avisar sobre a abertura das inscrições do curso Comida Planejada, por e-mail e WhatsApp, para quem entrou na lista de espera.</li>
+          <li>Medir as visitas ao site e o resultado dos anúncios no Facebook e no Instagram, para quem aceitou os cookies.</li>
         </ul>
-        <p>A base legal é o seu consentimento, dado ao marcar a caixa do formulário. Você pode retirá-lo a qualquer momento.</p>
+        <p>A base legal é o seu consentimento, dado ao marcar a caixa do formulário ou ao clicar em &quot;Aceitar&quot; no aviso de cookies. Você pode retirá-lo a qualquer momento.</p>
 
         <h2>Com quem os dados são compartilhados</h2>
         <p>Os dados não são vendidos nem cedidos a terceiros para fins comerciais. Eles passam apenas pelos serviços que fazem o site funcionar:</p>
@@ -37,9 +41,19 @@ export default function PrivacyPage() {
           <li><strong>FormSubmit:</strong> entrega as mensagens do formulário de contato no meu e-mail.</li>
           <li><strong>Vercel:</strong> hospeda o site.</li>
           <li><strong>Google Fonts:</strong> entrega as fontes de algumas páginas; para isso, o seu navegador se conecta aos servidores do Google.</li>
+          <li><strong>Meta (Facebook e Instagram):</strong> o site usa o Meta Pixel para medir as visitas e o resultado dos anúncios. Você pode limitar esse uso nas configurações de anúncios da sua conta da Meta e nas configurações de cookies do seu navegador.</li>
           <li><strong>Hotmart:</strong> processa as compras dos produtos pagos, com a política de privacidade própria dela.</li>
         </ul>
         <p>Alguns desses serviços ficam fora do Brasil, e por isso os dados podem ser armazenados em outros países, com as proteções que a LGPD exige.</p>
+
+        <h2>Cookies e o aviso de cookies</h2>
+        <p>Cookies são pequenos arquivos que o site guarda no seu navegador. Na primeira visita, aparece uma faixa no rodapé da tela perguntando se você aceita os cookies de medição.</p>
+        <ul>
+          <li><strong>Se você aceitar:</strong> o Meta Pixel passa a registrar as páginas que você visita e ações como abrir a página de vendas, iniciar uma compra ou pedir um material gratuito. Isso me ajuda a saber quais anúncios funcionam.</li>
+          <li><strong>Se você recusar:</strong> nenhuma informação de navegação é enviada à Meta.</li>
+        </ul>
+        <p>A sua escolha fica guardada no seu navegador, para a faixa não aparecer a cada página. Para mudar de ideia, clique em &quot;Preferências de cookies&quot;, no rodapé de qualquer página, ou aqui: <BotaoPreferenciasCookies />. Se você limpar os dados do navegador, a faixa aparece de novo na próxima visita.</p>
+        <p>A compra dos produtos pagos acontece na página da Hotmart, que tem o próprio aviso e a própria política de cookies.</p>
 
         <h2>Por quanto tempo os dados ficam guardados</h2>
         <p>O seu nome e e-mail ficam guardados enquanto você quiser receber os conteúdos. Quando você cancela a inscrição ou pede a exclusão, eles são apagados, a não ser que alguma lei exija guardar por mais tempo. As mensagens de contato ficam guardadas apenas pelo tempo necessário para responder.</p>

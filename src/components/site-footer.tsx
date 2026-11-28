@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Instagram, Youtube } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { BotaoPreferenciasCookies } from '@/components/aviso-cookies';
 import { CRN, SOCIAL } from '@/content/site';
 
 export function SiteFooter() {
@@ -43,7 +44,7 @@ export function SiteFooter() {
         </div>
         <div className="footer-base">
           <span>Adriana Botelho · Nutricionista · {CRN} · © 2026</span>
-          <Link href="/privacidade">Política de privacidade</Link>
+          <span className="footer-base-links"><Link href="/privacidade">Política de privacidade</Link><BotaoPreferenciasCookies /></span>
         </div>
       </div>
     </footer>

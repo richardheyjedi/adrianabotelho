@@ -12,8 +12,6 @@ const nextConfig = {
       { source: '/mapa/', destination: '/mapa/index.html' },
       { source: '/arvore', destination: '/arvore/index.html' },
       { source: '/arvore/', destination: '/arvore/index.html' },
-      { source: '/comida-planejada', destination: '/comida-planejada/index.html' },
-      { source: '/comida-planejada/', destination: '/comida-planejada/index.html' },
     ];
   },
   async redirects() {

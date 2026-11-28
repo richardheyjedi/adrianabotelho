@@ -3,8 +3,23 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { ArrowDown, ArrowRight, Check, ChefHat, CircleCheck, CircleHelp, ClipboardList, Frown, Heart, House, Lightbulb, ListChecks, Lock, Map, Minus, Plus, Puzzle, Quote, Repeat, ShieldCheck, Smile, Trash2, type LucideIcon } from 'lucide-react';
 import copy from '@/content/escolhi-proteina-copy.json';
+import { BotaoPreferenciasCookies } from '@/components/aviso-cookies';
+import { EventoMeta } from '@/components/meta-pixel';
+import { rastrear } from '@/lib/meta-pixel';
 
 const CHECKOUT_URL = 'https://pay.hotmart.com/K108586502D?off=hnf8443s';
+// Dados do produto enviados ao Meta Pixel.
+const PRODUTO = { content_name: 'Escolhi a proteína. E agora?', content_type: 'product', value: 47.9, currency: 'BRL' };
+// Parâmetros de origem do anúncio que seguem para a Hotmart junto com o off.
+const PARAMETROS_ORIGEM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'src'];
+
+function linkCheckout() {
+  const destino = new URL(CHECKOUT_URL);
+  const atual = new URLSearchParams(window.location.search);
+  PARAMETROS_ORIGEM.forEach((nome) => { const valor = atual.get(nome); if (valor) destino.searchParams.set(nome, valor); });
+  return destino.toString();
+}
+
 const ASSETS = {
   laptop: '/escolhi-a-proteina/mapa-tela-computador.webp',
   tablet: '/escolhi-a-proteina/capa-ebook.webp',
@@ -25,7 +40,10 @@ function Rich({ text }: { text: string }) {
 function CTA({ checkout = false }: { checkout?: boolean }) {
   const handleClick = () => {
     if (checkout) {
-      window.location.assign(CHECKOUT_URL);
+      const destino = linkCheckout();
+      // Com o evento enviado, espera um instante para ele sair antes de ir para a Hotmart (no máximo 300 ms).
+      if (rastrear('InitiateCheckout', PRODUTO)) window.setTimeout(() => window.location.assign(destino), 150);
+      else window.location.assign(destino);
       return;
     }
     document.getElementById('oferta')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
@@ -102,6 +120,6 @@ export function ProteinaSalesPage() {
     <section className="page-section author" data-section="14"><div className="page-container two-column"><img className="author-photo" src={ASSETS.author} width="933" height="1400" loading="lazy" alt="Adriana Botelho de avental, com os braços cruzados" /><div className="author-text"><Heading section={14} />{values(14, 'Parágrafo').map((text) => <p key={text}>{text}</p>)}<ItemList section={14} /><CTA /></div></div></section>
     <Section number={15}><FAQ /></Section>
     <Section number={16} className="final-cta"><p className="center-prose">{value(16, 'Texto')}</p><div className="center-cta"><CTA checkout /></div></Section>
-    <footer>{lines(17)[0]}</footer><FloatingCTA />
+    <footer>{lines(17)[0]}<br /><BotaoPreferenciasCookies /></footer><FloatingCTA /><EventoMeta evento="ViewContent" dados={PRODUTO} />
   </div>;
 }
